@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "safro.oxidized.mixin",
+  "compatibilityLevel": "JAVA_16",
+  "mixins": [
+    "MinecartEntityAccessor",
+    "MinecartRailMixin",
+    "HoneycombMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

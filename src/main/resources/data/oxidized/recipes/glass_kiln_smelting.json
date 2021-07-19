@@ -1,0 +1,9 @@
+{
+  "type": "oxidized:kiln_smelting",
+  "ingredient": {
+    "item": "minecraft:sand"
+  },
+  "result": "minecraft:glass",
+  "experience": 0.2,
+  "cookingtime": 100
+}

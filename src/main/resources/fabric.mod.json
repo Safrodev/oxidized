@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "oxidized",
+  "version": "1.0.0",
+
+  "name": "Oxidized",
+  "description": "Make copper great again!",
+  "authors": [
+    "Safro"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/oxidized",
+    "sources": "https://github.com/Safrodev/oxidized"
+  },
+
+  "license": "GNU General Public License v3.0",
+  "icon": "assets/oxidized/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "safro.oxidized.Oxidized"
+    ],
+    "client": [
+      "safro.oxidized.OxidizedClient"
+    ]
+  },
+  "mixins": [
+    "oxidized.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16"
+  },
+  "accessWidener": "oxidized.accesswidener"
+}

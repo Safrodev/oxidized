@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "oxidized:block/vertical_cut_weathered_copper_block"
+  }
+}

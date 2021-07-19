@@ -1,0 +1,9 @@
+{
+  "type": "oxidized:kiln_smelting",
+  "ingredient": {
+    "item": "minecraft:clay_ball"
+  },
+  "result": "minecraft:brick",
+  "experience": 0.2,
+  "cookingtime": 100
+}

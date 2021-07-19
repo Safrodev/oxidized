@@ -1,0 +1,9 @@
+{
+  "type": "oxidized:kiln_smelting",
+  "ingredient": {
+    "item": "minecraft:clay"
+  },
+  "result": "minecraft:terracotta",
+  "experience": 0.3,
+  "cookingtime": 100
+}
