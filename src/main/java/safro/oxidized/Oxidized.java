@@ -12,7 +12,7 @@ public class Oxidized implements ModInitializer {
 
 	public static ItemGroup ITEMGROUP = FabricItemGroupBuilder.build(
 			new Identifier("oxidized", "item_group"),
-			() -> new ItemStack(BlockRegistry.COPPER_RAIL));
+			() -> new ItemStack(ItemRegistry.COPPER_PULSAR));
 
 
 	@Override

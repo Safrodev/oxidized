@@ -1,8 +1,10 @@
 package safro.oxidized.registry;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry;
+import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.BlockItem;
@@ -33,16 +35,16 @@ public class BlockRegistry {
     }
 
     public static final Block COPPER_RAIL = new CopperRailBlock(AbstractBlock.Settings.of(Material.DECORATION).noCollision().strength(0.7F).sounds(BlockSoundGroup.METAL));
-    public static final Block VERTICAL_CUT_COPPER = new CustomOxidizableBlock(Oxidizable.OxidizationLevel.UNAFFECTED, AbstractBlock.Settings.copy(Blocks.COPPER_BLOCK));
-    public static final Block VERTICAL_EXPOSED_CUT_COPPER = new CustomOxidizableBlock(Oxidizable.OxidizationLevel.EXPOSED, AbstractBlock.Settings.copy(Blocks.EXPOSED_COPPER));
-    public static final Block VERTICAL_WEATHERED_CUT_COPPER = new CustomOxidizableBlock(Oxidizable.OxidizationLevel.WEATHERED, AbstractBlock.Settings.copy(Blocks.WEATHERED_COPPER));
-    public static final Block VERTICAL_OXIDIZED_CUT_COPPER = new CustomOxidizableBlock(Oxidizable.OxidizationLevel.OXIDIZED, AbstractBlock.Settings.copy(Blocks.OXIDIZED_COPPER));
-    public static final Block WAXED_VERTICAL_CUT_COPPER = new Block(AbstractBlock.Settings.copy(Blocks.COPPER_BLOCK));
-    public static final Block WAXED_VERTICAL_EXPOSED_CUT_COPPER = new Block(AbstractBlock.Settings.copy(Blocks.COPPER_BLOCK));
-    public static final Block WAXED_VERTICAL_WEATHERED_CUT_COPPER = new Block(AbstractBlock.Settings.copy(Blocks.COPPER_BLOCK));
-    public static final Block WAXED_VERTICAL_OXIDIZED_CUT_COPPER = new Block(AbstractBlock.Settings.copy(Blocks.COPPER_BLOCK));
+    public static final Block VERTICAL_CUT_COPPER = new CustomOxidizableBlock(Oxidizable.OxidizationLevel.UNAFFECTED, FabricBlockSettings.of(Material.METAL).mapColor(MapColor.ORANGE).sounds(BlockSoundGroup.COPPER).requiresTool().strength(3.0F, 6.0F).breakByTool(FabricToolTags.PICKAXES, 1));
+    public static final Block VERTICAL_EXPOSED_CUT_COPPER = new CustomOxidizableBlock(Oxidizable.OxidizationLevel.EXPOSED, AbstractBlock.Settings.copy(BlockRegistry.VERTICAL_CUT_COPPER));
+    public static final Block VERTICAL_WEATHERED_CUT_COPPER = new CustomOxidizableBlock(Oxidizable.OxidizationLevel.WEATHERED, AbstractBlock.Settings.copy(BlockRegistry.VERTICAL_CUT_COPPER));
+    public static final Block VERTICAL_OXIDIZED_CUT_COPPER = new CustomOxidizableBlock(Oxidizable.OxidizationLevel.OXIDIZED, AbstractBlock.Settings.copy(BlockRegistry.VERTICAL_CUT_COPPER));
+    public static final Block WAXED_VERTICAL_CUT_COPPER = new Block(AbstractBlock.Settings.copy(BlockRegistry.VERTICAL_CUT_COPPER));
+    public static final Block WAXED_VERTICAL_EXPOSED_CUT_COPPER = new Block(AbstractBlock.Settings.copy(BlockRegistry.VERTICAL_CUT_COPPER));
+    public static final Block WAXED_VERTICAL_WEATHERED_CUT_COPPER = new Block(AbstractBlock.Settings.copy(BlockRegistry.VERTICAL_CUT_COPPER));
+    public static final Block WAXED_VERTICAL_OXIDIZED_CUT_COPPER = new Block(AbstractBlock.Settings.copy(BlockRegistry.VERTICAL_CUT_COPPER));
 
-    public static final Block COPPER_KILN = new CopperKilnBlock(AbstractBlock.Settings.of(Material.METAL).requiresTool().strength(3.5F).luminance(createLightLevelBlockstate(13)).sounds(BlockSoundGroup.COPPER).nonOpaque());
+    public static final Block COPPER_KILN = new CopperKilnBlock(FabricBlockSettings.of(Material.METAL).mapColor(MapColor.ORANGE).requiresTool().strength(3.5F, 6.0F).luminance(createLightLevelBlockstate(13)).sounds(BlockSoundGroup.COPPER).nonOpaque().breakByTool(FabricToolTags.PICKAXES, 1));
     public static BlockEntityType<CopperKilnBlockEntity> COPPER_KILN_BLOCK_ENTITY;
     public static final ScreenHandlerType<CopperKilnScreenHandler> COPPER_KILN_SCREEN_HANDLER = ScreenHandlerRegistry.registerSimple(new Identifier("oxidized", "copper_kiln_screen_handler"), CopperKilnScreenHandler::new);;
     public static final RecipeType<CopperKilnRecipe> COPPER_KILN_RECIPE_TYPE = RecipeType.register("oxidized:kiln_smelting");
