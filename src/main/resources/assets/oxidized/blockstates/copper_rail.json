@@ -22,17 +22,17 @@
       "model": "oxidized:block/copper_rail"
     },
     "powered=true,shape=ascending_east": {
-      "model": "oxidized:block/copper_rail_on_raised_ne",
+      "model": "oxidized:block/copper_rail_raised_on_ne",
       "y": 90
     },
     "powered=true,shape=ascending_north": {
-      "model": "oxidized:block/copper_rail_on_raised_ne"
+      "model": "oxidized:block/copper_rail_raised_on_ne"
     },
     "powered=true,shape=ascending_south": {
-      "model": "oxidized:block/copper_rail_on_raised_sw"
+      "model": "oxidized:block/copper_rail_raised_on_sw"
     },
     "powered=true,shape=ascending_west": {
-      "model": "oxidized:block/copper_rail_on_raised_sw",
+      "model": "oxidized:block/copper_rail_raised_on_sw",
       "y": 90
     },
     "powered=true,shape=east_west": {

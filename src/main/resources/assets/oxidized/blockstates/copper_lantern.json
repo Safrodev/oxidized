@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "oxidized:block/copper_lantern"
+    },
+    "hanging=true": {
+      "model": "oxidized:block/copper_lantern_hanging"
+    }
+  }
+}

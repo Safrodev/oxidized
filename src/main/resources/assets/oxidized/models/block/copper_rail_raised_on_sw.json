@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/template_rail_raised_sw",
   "textures": {
-    "rail": "oxidized:block/copper_rail"
+    "rail": "oxidized:block/copper_rail_on"
   }
 }
