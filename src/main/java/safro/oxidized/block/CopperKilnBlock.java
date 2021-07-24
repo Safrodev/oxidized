@@ -16,6 +16,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import safro.oxidized.block.entity.CopperKilnBlockEntity;
 import safro.oxidized.registry.BlockRegistry;
+import safro.oxidized.util.IRotatable;
 
 import java.util.Random;
 

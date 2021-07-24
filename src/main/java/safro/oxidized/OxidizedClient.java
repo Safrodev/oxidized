@@ -15,6 +15,7 @@ public class OxidizedClient implements ClientModInitializer {
 
         BlockRenderLayerMap.INSTANCE.putBlock(BlockRegistry.COPPER_RAIL, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(BlockRegistry.COPPER_KILN, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(BlockRegistry.COPPER_LANTERN, RenderLayer.getCutout());
 
         ScreenRegistry.register(BlockRegistry.COPPER_KILN_SCREEN_HANDLER, CopperKilnScreen::new);
     }

@@ -43,6 +43,9 @@ public class BlockRegistry {
     public static final Block WAXED_VERTICAL_EXPOSED_CUT_COPPER = new Block(AbstractBlock.Settings.copy(BlockRegistry.VERTICAL_CUT_COPPER));
     public static final Block WAXED_VERTICAL_WEATHERED_CUT_COPPER = new Block(AbstractBlock.Settings.copy(BlockRegistry.VERTICAL_CUT_COPPER));
     public static final Block WAXED_VERTICAL_OXIDIZED_CUT_COPPER = new Block(AbstractBlock.Settings.copy(BlockRegistry.VERTICAL_CUT_COPPER));
+    public static final LanternBlock COPPER_LANTERN = new LanternBlock(FabricBlockSettings.of(Material.METAL).requiresTool().breakByTool(FabricToolTags.PICKAXES, 0).strength(3.5F).sounds(BlockSoundGroup.LANTERN).luminance((state) -> {
+        return 15;
+    }).nonOpaque());
 
     public static final Block COPPER_KILN = new CopperKilnBlock(FabricBlockSettings.of(Material.METAL).mapColor(MapColor.ORANGE).requiresTool().strength(3.5F, 6.0F).luminance(createLightLevelBlockstate(13)).sounds(BlockSoundGroup.COPPER).nonOpaque().breakByTool(FabricToolTags.PICKAXES, 1));
     public static BlockEntityType<CopperKilnBlockEntity> COPPER_KILN_BLOCK_ENTITY;
@@ -71,6 +74,8 @@ public class BlockRegistry {
         Registry.register(Registry.ITEM, new Identifier("oxidized", "waxed_vertical_weathered_cut_copper"), new BlockItem(WAXED_VERTICAL_WEATHERED_CUT_COPPER, new FabricItemSettings().group(Oxidized.ITEMGROUP)));
         Registry.register(Registry.BLOCK, new Identifier("oxidized", "waxed_vertical_oxidized_cut_copper"), WAXED_VERTICAL_OXIDIZED_CUT_COPPER);
         Registry.register(Registry.ITEM, new Identifier("oxidized", "waxed_vertical_oxidized_cut_copper"), new BlockItem(WAXED_VERTICAL_OXIDIZED_CUT_COPPER, new FabricItemSettings().group(Oxidized.ITEMGROUP)));
+        Registry.register(Registry.BLOCK, new Identifier("oxidized", "copper_lantern"), COPPER_LANTERN);
+        Registry.register(Registry.ITEM, new Identifier("oxidized", "copper_lantern"), new BlockItem(COPPER_LANTERN, new FabricItemSettings().group(Oxidized.ITEMGROUP)));
         Registry.register(Registry.BLOCK, new Identifier("oxidized", "copper_kiln"), COPPER_KILN);
         Registry.register(Registry.ITEM, new Identifier("oxidized", "copper_kiln"), new BlockItem(COPPER_KILN, new FabricItemSettings().group(Oxidized.ITEMGROUP)));
 
