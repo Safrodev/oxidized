@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "X#X",
+    "XXX"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:torch"
+    },
+    "X": {
+      "item": "oxidized:copper_nugget"
+    }
+  },
+  "result": {
+    "item": "oxidized:copper_lantern"
+  }
+}
