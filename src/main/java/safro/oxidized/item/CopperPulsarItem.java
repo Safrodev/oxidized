@@ -17,6 +17,7 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.injection.Inject;
+import safro.oxidized.Oxidized;
 
 import java.util.List;
 
@@ -35,13 +36,13 @@ public class CopperPulsarItem extends Item {
         {
             ServerPlayerEntity player = (ServerPlayerEntity) entity;
 
-            List<ItemEntity> entityItems = player.getServerWorld().getEntitiesByClass(ItemEntity.class, player.getBoundingBox().expand(10), EntityPredicates.VALID_ENTITY);
+            List<ItemEntity> entityItems = player.getServerWorld().getEntitiesByClass(ItemEntity.class, player.getBoundingBox().expand(Oxidized.CONFIG.pulsar_reach), EntityPredicates.VALID_ENTITY);
             for (ItemEntity entityItemNearby : entityItems)
             {
                 entityItemNearby.onPlayerCollision(player);
             }
 
-            List<ExperienceOrbEntity> entityXP = player.getServerWorld().getEntitiesByClass(ExperienceOrbEntity.class, player.getBoundingBox().expand(8), EntityPredicates.VALID_ENTITY);
+            List<ExperienceOrbEntity> entityXP = player.getServerWorld().getEntitiesByClass(ExperienceOrbEntity.class, player.getBoundingBox().expand(Oxidized.CONFIG.pulsar_reach), EntityPredicates.VALID_ENTITY);
             for (ExperienceOrbEntity entityXPNearby : entityXP)
             {
                 entityXPNearby.onPlayerCollision(player);
@@ -54,10 +55,9 @@ public class CopperPulsarItem extends Item {
     {
         ItemStack pulsar = player.getStackInHand(hand);
 
-        if (!world.isClient && !player.isSneaking())
-        {
+        if (!world.isClient && !player.isSneaking()) {
             toggleMode(pulsar);
-            player.sendMessage(new LiteralText("§6Pulsar toggled"), false);
+            player.sendMessage(new LiteralText("§6Pulsar is now: " + getMagnetMode(pulsar)), false);
 
         }
 

@@ -25,13 +25,12 @@ public abstract class MinecartRailMixin {
         }
     }
 
-    @SuppressWarnings("ConstantConditions")
+ /*   @SuppressWarnings("ConstantConditions")
     @Overwrite
     public void moveOffRail() {
         AbstractMinecartEntity minecart = (AbstractMinecartEntity) (Object) this;
-        BlockState state = minecart.world.getBlockState(minecart.getBlockPos());
 
         minecart.move(MovementType.SELF, minecart.getVelocity());
         minecart.setVelocity(minecart.getVelocity().multiply(minecart.isOnGround() ? 0.5D : 0.95D));
-    }
+    } */
 }

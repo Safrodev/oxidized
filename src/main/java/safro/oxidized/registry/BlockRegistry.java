@@ -17,9 +17,7 @@ import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import safro.oxidized.Oxidized;
-import safro.oxidized.block.CopperKilnBlock;
-import safro.oxidized.block.CopperRailBlock;
-import safro.oxidized.block.CustomOxidizableBlock;
+import safro.oxidized.block.*;
 import safro.oxidized.block.entity.CopperKilnBlockEntity;
 import safro.oxidized.block.screen.CopperKilnScreenHandler;
 import safro.oxidized.recipe.CopperKilnRecipe;
@@ -46,6 +44,8 @@ public class BlockRegistry {
     public static final LanternBlock COPPER_LANTERN = new LanternBlock(FabricBlockSettings.of(Material.METAL).requiresTool().breakByTool(FabricToolTags.PICKAXES, 0).strength(3.5F).sounds(BlockSoundGroup.LANTERN).luminance((state) -> {
         return 15;
     }).nonOpaque());
+    public static final Block COPPER_PAN = new CopperPanBlock(FabricBlockSettings.of(Material.METAL).mapColor(MapColor.ORANGE).sounds(BlockSoundGroup.COPPER).requiresTool().strength(3.0F, 6.0F).breakByTool(FabricToolTags.PICKAXES, 1).ticksRandomly());
+    public static final Block COPPER_BUTTON = new CopperButtonBlock(AbstractBlock.Settings.of(Material.DECORATION).noCollision().strength(0.5F).sounds(BlockSoundGroup.COPPER));
 
     public static final Block COPPER_KILN = new CopperKilnBlock(FabricBlockSettings.of(Material.METAL).mapColor(MapColor.ORANGE).requiresTool().strength(3.5F, 6.0F).luminance(createLightLevelBlockstate(13)).sounds(BlockSoundGroup.COPPER).nonOpaque().breakByTool(FabricToolTags.PICKAXES, 1));
     public static BlockEntityType<CopperKilnBlockEntity> COPPER_KILN_BLOCK_ENTITY;
@@ -76,6 +76,10 @@ public class BlockRegistry {
         Registry.register(Registry.ITEM, new Identifier("oxidized", "waxed_vertical_oxidized_cut_copper"), new BlockItem(WAXED_VERTICAL_OXIDIZED_CUT_COPPER, new FabricItemSettings().group(Oxidized.ITEMGROUP)));
         Registry.register(Registry.BLOCK, new Identifier("oxidized", "copper_lantern"), COPPER_LANTERN);
         Registry.register(Registry.ITEM, new Identifier("oxidized", "copper_lantern"), new BlockItem(COPPER_LANTERN, new FabricItemSettings().group(Oxidized.ITEMGROUP)));
+        Registry.register(Registry.BLOCK, new Identifier("oxidized", "copper_pan"), COPPER_PAN);
+        Registry.register(Registry.ITEM, new Identifier("oxidized", "copper_pan"), new BlockItem(COPPER_PAN, new FabricItemSettings().group(Oxidized.ITEMGROUP)));
+        Registry.register(Registry.BLOCK, new Identifier("oxidized", "copper_button"), COPPER_BUTTON);
+        Registry.register(Registry.ITEM, new Identifier("oxidized", "copper_button"), new BlockItem(COPPER_BUTTON, new FabricItemSettings().group(Oxidized.ITEMGROUP)));
         Registry.register(Registry.BLOCK, new Identifier("oxidized", "copper_kiln"), COPPER_KILN);
         Registry.register(Registry.ITEM, new Identifier("oxidized", "copper_kiln"), new BlockItem(COPPER_KILN, new FabricItemSettings().group(Oxidized.ITEMGROUP)));
 

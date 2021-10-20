@@ -17,6 +17,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import safro.oxidized.Oxidized;
+import safro.oxidized.config.OxidizedConfig;
 import safro.oxidized.mixin.MinecartEntityAccessor;
 import safro.oxidized.util.MinecartHandler;
 
@@ -50,7 +52,7 @@ public class CopperRailBlock extends AbstractRailBlock {
     }
 
     public boolean isPoweredByOtherRails(World world, BlockPos pos, BlockState state, boolean bl, int distance) {
-        if (distance >= 101) {
+        if (distance >= Oxidized.CONFIG.copper_rail_range) {
             return false;
         } else {
             int i = pos.getX();
