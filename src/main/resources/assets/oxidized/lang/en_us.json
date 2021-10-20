@@ -18,6 +18,10 @@
   "block.oxidized.copper_rail": "Copper Rail",
   "block.oxidized.copper_kiln": "Copper Kiln",
   "block.oxidized.copper_lantern": "Copper Lantern",
+  "block.oxidized.copper_pan": "Copper Pan",
+  "block.oxidized.copper_button": "Copper Button",
+
+  "entity.oxidized.copper_golem": "Copper Golem",
 
   "gui.recipebook.toggleRecipes.kiln": "Showing Kiln Recipes",
   "itemGroup.oxidized.item_group": "Oxidized",
