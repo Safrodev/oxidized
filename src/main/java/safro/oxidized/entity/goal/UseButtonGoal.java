@@ -3,6 +3,7 @@ package safro.oxidized.entity.goal;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.ai.goal.MoveToTargetPosGoal;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 import safro.oxidized.block.CopperButtonBlock;
@@ -38,17 +39,13 @@ public class UseButtonGoal extends MoveToTargetPosGoal {
         if (this.hasReached()) {
             if (this.hasButton(targetPos) && button != null && buttonPos != null) {
                 this.golem.setPressingButtons(true);
-                if (button.getBlock() instanceof CopperButtonBlock copperButton) {
+                if (button.getBlock() instanceof CopperButtonBlock copperButton && MathHelper.nextInt(golem.getRandom(), 1, 20) == 2) {
                     copperButton.powerOn(button, this.golem.world, buttonPos);
                 }
             //    Oxidized.LOGGER.info("Pressing Button");
             }
         }
         super.tick();
-    }
-
-    public double getDesiredSquaredDistanceToTarget() {
-        return 2.0D;
     }
 
     protected boolean isTargetPos(WorldView world, BlockPos pos) {
