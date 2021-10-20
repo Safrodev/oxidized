@@ -6,7 +6,8 @@
   "mixins": [
     "MinecartEntityAccessor",
     "MinecartRailMixin",
-    "HoneycombMixin"
+    "HoneycombMixin",
+    "LightningRodBlockMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#G#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "tag": "c:copper_ingots"
+    },
+    "G": {
+      "item": "minecraft:gold_nugget"
+    }
+  },
+  "result": {
+    "item": "oxidized:copper_pan",
+    "count": 1
+  }
+}
