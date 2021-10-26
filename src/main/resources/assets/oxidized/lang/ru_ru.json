@@ -1,0 +1,29 @@
+{
+  "item.oxidized.copper_pulsar": "Медный пульсар",
+  "item.oxidized.rose_gold_axe": "Розово-золотой топор",
+  "item.oxidized.rose_gold_pickaxe": "Розово-золотая кирка",
+  "item.oxidized.rose_gold_hoe": "Розово-золотая мотыга",
+  "item.oxidized.rose_gold_shovel": "Розово-золотая лопата",
+  "item.oxidized.rose_gold_sword": "Розово-золотой меч",
+  "item.oxidized.copper_nugget": "Кусочек меди",
+
+  "block.oxidized.vertical_cut_copper": "Вертикально резной медный блок",
+  "block.oxidized.vertical_exposed_cut_copper": "Потемневший вертикально резной медный блок",
+  "block.oxidized.vertical_weathered_cut_copper": "Состаренный вертикально резной медный блок",
+  "block.oxidized.vertical_oxidized_cut_copper": "Окисленный вертикально резной медный блок",
+  "block.oxidized.waxed_vertical_cut_copper": "Вощёный вертикально резной медный блок",
+  "block.oxidized.waxed_vertical_exposed_cut_copper": "Вощёный потемневший вертикально резной медный блок",
+  "block.oxidized.waxed_vertical_weathered_cut_copper": "Вощёный состаренный вертикально резной медный блок",
+  "block.oxidized.waxed_vertical_oxidized_cut_copper": "Вощёный окисленный вертикально резной медный блок",
+  "block.oxidized.copper_rail": "Медные рельсы",
+  "block.oxidized.copper_kiln": "Обжигательная печь",
+  "block.oxidized.copper_lantern": "Медный фонарь",
+  "block.oxidized.copper_pan": "Медный лоток",
+  "block.oxidized.copper_button": "Медная кнопка",
+
+  "entity.oxidized.copper_golem": "Медный голем",
+
+  "gui.recipebook.toggleRecipes.kiln": "Рецепты для обжигательной печи",
+  "itemGroup.oxidized.item_group": "Oxidized",
+  "container.oxidized.copper_kiln": "Обжигательная печь"
+}
