@@ -9,14 +9,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.predicate.entity.EntityPredicates;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.spongepowered.asm.mixin.injection.Inject;
 import safro.oxidized.Oxidized;
 
 import java.util.List;
@@ -36,13 +33,13 @@ public class CopperPulsarItem extends Item {
         {
             ServerPlayerEntity player = (ServerPlayerEntity) entity;
 
-            List<ItemEntity> entityItems = player.getServerWorld().getEntitiesByClass(ItemEntity.class, player.getBoundingBox().expand(Oxidized.CONFIG.pulsar_reach), EntityPredicates.VALID_ENTITY);
+            List<ItemEntity> entityItems = player.world.getEntitiesByClass(ItemEntity.class, player.getBoundingBox().expand(Oxidized.CONFIG.pulsar_reach), EntityPredicates.VALID_ENTITY);
             for (ItemEntity entityItemNearby : entityItems)
             {
                 entityItemNearby.onPlayerCollision(player);
             }
 
-            List<ExperienceOrbEntity> entityXP = player.getServerWorld().getEntitiesByClass(ExperienceOrbEntity.class, player.getBoundingBox().expand(Oxidized.CONFIG.pulsar_reach), EntityPredicates.VALID_ENTITY);
+            List<ExperienceOrbEntity> entityXP = player.world.getEntitiesByClass(ExperienceOrbEntity.class, player.getBoundingBox().expand(Oxidized.CONFIG.pulsar_reach), EntityPredicates.VALID_ENTITY);
             for (ExperienceOrbEntity entityXPNearby : entityXP)
             {
                 entityXPNearby.onPlayerCollision(player);

@@ -33,7 +33,7 @@ import safro.oxidized.entity.goal.UseButtonGoal;
 
 public class CopperGolemEntity extends GolemEntity {
     private static final TrackedData<Boolean> IS_PRESSING_BUTTONS;
-    private Oxidizable.OxidizationLevel oxidizationLevel;
+    private Oxidizable.OxidationLevel oxidizationLevel;
     private int tickOxidization = 0;
 
     public CopperGolemEntity(EntityType<? extends CopperGolemEntity> entityType, World world) {
@@ -60,18 +60,18 @@ public class CopperGolemEntity extends GolemEntity {
         return (Boolean)this.dataTracker.get(IS_PRESSING_BUTTONS);
     }
 
-    public Oxidizable.OxidizationLevel getOxidizationLevel() {
+    public Oxidizable.OxidationLevel getOxidizationLevel() {
         return oxidizationLevel;
     }
 
     public boolean isStatue() {
-        return oxidizationLevel.equals(Oxidizable.OxidizationLevel.OXIDIZED);
+        return oxidizationLevel.equals(Oxidizable.OxidationLevel.OXIDIZED);
     }
 
     public void tick() {
         super.tick();
         this.oxidizationTick();
-        if (this.oxidizationLevel != Oxidizable.OxidizationLevel.OXIDIZED) {
+        if (this.oxidizationLevel != Oxidizable.OxidationLevel.OXIDIZED) {
             ++tickOxidization;
         }
         this.setAiDisabled(this.isStatue());
@@ -79,13 +79,13 @@ public class CopperGolemEntity extends GolemEntity {
 
     protected void oxidizationTick() {
         if (tickOxidization == 1200000) {
-            this.oxidizationLevel = Oxidizable.OxidizationLevel.OXIDIZED;
+            this.oxidizationLevel = Oxidizable.OxidationLevel.OXIDIZED;
         } else if (tickOxidization == 800000) {
-            this.oxidizationLevel = Oxidizable.OxidizationLevel.WEATHERED;
+            this.oxidizationLevel = Oxidizable.OxidationLevel.WEATHERED;
         } else if (tickOxidization == 400000) {
-            this.oxidizationLevel = Oxidizable.OxidizationLevel.EXPOSED;
+            this.oxidizationLevel = Oxidizable.OxidationLevel.EXPOSED;
         } else if (this.tickOxidization < 400000) {
-            this.oxidizationLevel = Oxidizable.OxidizationLevel.UNAFFECTED;
+            this.oxidizationLevel = Oxidizable.OxidationLevel.UNAFFECTED;
         }
     }
 
@@ -96,7 +96,7 @@ public class CopperGolemEntity extends GolemEntity {
 
     protected ActionResult interactMob(PlayerEntity player, Hand hand) {
         ItemStack stack = player.getStackInHand(hand);
-        if (stack.isIn(FabricToolTags.AXES) && this.oxidizationLevel != Oxidizable.OxidizationLevel.UNAFFECTED) {
+        if (stack.isIn(FabricToolTags.AXES) && this.oxidizationLevel != Oxidizable.OxidationLevel.UNAFFECTED) {
             this.degradeLevel();
             world.playSound(player, player.getBlockPos(), SoundEvents.ITEM_AXE_SCRAPE, SoundCategory.BLOCKS, 1.0F, 1.0F);
             world.syncWorldEvent(player, 3005, player.getBlockPos(), 0);
@@ -109,19 +109,19 @@ public class CopperGolemEntity extends GolemEntity {
     }
 
     public void degradeLevel() {
-        if (this.oxidizationLevel == Oxidizable.OxidizationLevel.OXIDIZED) {
-            this.oxidizationLevel = Oxidizable.OxidizationLevel.WEATHERED;
-        } else if (this.oxidizationLevel == Oxidizable.OxidizationLevel.WEATHERED) {
-            this.oxidizationLevel = Oxidizable.OxidizationLevel.EXPOSED;
-        } else if (this.oxidizationLevel == Oxidizable.OxidizationLevel.EXPOSED) {
-            this.oxidizationLevel = Oxidizable.OxidizationLevel.UNAFFECTED;
+        if (this.oxidizationLevel == Oxidizable.OxidationLevel.OXIDIZED) {
+            this.oxidizationLevel = Oxidizable.OxidationLevel.WEATHERED;
+        } else if (this.oxidizationLevel == Oxidizable.OxidationLevel.WEATHERED) {
+            this.oxidizationLevel = Oxidizable.OxidationLevel.EXPOSED;
+        } else if (this.oxidizationLevel == Oxidizable.OxidationLevel.EXPOSED) {
+            this.oxidizationLevel = Oxidizable.OxidationLevel.UNAFFECTED;
         }
     }
 
     public void onStruckByLightning(ServerWorld world, LightningEntity lightning) {
         super.onStruckByLightning(world, lightning);
         this.tickOxidization = 0;
-        this.oxidizationLevel = Oxidizable.OxidizationLevel.UNAFFECTED;
+        this.oxidizationLevel = Oxidizable.OxidationLevel.UNAFFECTED;
         ParticleUtil.spawnParticle(this.getMovementDirection().getAxis(), world, this.getBlockPos(), 0.125D, ParticleTypes.ELECTRIC_SPARK, UniformIntProvider.create(1, 2));
     }
 

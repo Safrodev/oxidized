@@ -40,7 +40,7 @@ public class UseButtonGoal extends MoveToTargetPosGoal {
         if (this.hasReached()) {
         //    if (this.hasButton(targetPos) && button != null && buttonPos != null) {
                 this.golem.setPressingButtons(true);
-                if (MathHelper.nextInt(golem.getRandom(), 1, Oxidized.CONFIG.button_chance) == 2) {
+                if (MathHelper.nextInt(golem.getRandom(), 1, Oxidized.CONFIG.copper_golem_button_chance) == 2) {
                     BlockState state = this.golem.world.getBlockState(this.targetPos);
                     ((CopperButtonBlock) state.getBlock()).onUse(state, this.mob.world, this.targetPos, null, null, null);
                 }

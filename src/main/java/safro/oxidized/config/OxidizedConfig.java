@@ -1,31 +1,53 @@
 package safro.oxidized.config;
 
-import draylar.omegaconfig.api.Config;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
-public class OxidizedConfig implements Config {
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 
-    @Override
-    public String getName() {
-        return "oxidized-config";
-    }
-
-    public String rail_info = "Set this number to how far a redstone signal can power copper rails.";
+public class OxidizedConfig {
+    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
     public int copper_rail_range = 50;
-
-    public String pulsar_info = "Set this number to the range at which the pulsar can pick up items/xp orbs";
-
     public int pulsar_reach = 10;
-
-    public String pan_info = "The values below determine the chance for items to be sifted in the copper pan. Each value must be in 0.#F form and it's recommended that all values add up to less than or equal to 1.0";
-
     public float iron_nugget_chance = 0.15F;
     public float gold_nugget_chance = 0.15F;
     public float sand_chance = 0.24F;
     public float gravel_chance = 0.12F;
     public float emerald_chance = 0.02F;
+    public int copper_golem_button_chance = 30;
 
-    public String copper_golem_info = "The below value can be set to a number from 3 to 2,147,483,647. The higher the value, the less often the golem will push buttons. Default is 30";
+    public static OxidizedConfig loadConfig(File file) {
+        OxidizedConfig config;
 
-    public int button_chance = 30;
+        if (file.exists() && file.isFile()) {
+            try (
+                    FileInputStream fileInputStream = new FileInputStream(file);
+                    InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, StandardCharsets.UTF_8);
+                    BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            ) {
+                config = GSON.fromJson(bufferedReader, OxidizedConfig.class);
+            } catch (IOException e) {
+                throw new RuntimeException("Failed to load config", e);
+            }
+        } else {
+            config = new OxidizedConfig();
+        }
+
+        config.saveConfig(file);
+
+        return config;
+    }
+
+    public void saveConfig(File config) {
+        try (
+                FileOutputStream stream = new FileOutputStream(config);
+                Writer writer = new OutputStreamWriter(stream, StandardCharsets.UTF_8);
+        ) {
+            GSON.toJson(this, writer);
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to load config", e);
+        }
+    }
 }

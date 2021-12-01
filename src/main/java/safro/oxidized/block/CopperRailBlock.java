@@ -18,7 +18,6 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import safro.oxidized.Oxidized;
-import safro.oxidized.config.OxidizedConfig;
 import safro.oxidized.mixin.MinecartEntityAccessor;
 import safro.oxidized.util.MinecartHandler;
 

@@ -21,8 +21,7 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 public class BasicHoeItem extends MiningToolItem {
-
-    public static final Map<Block, Pair<Predicate<ItemUsageContext>, Consumer<ItemUsageContext>>> TILLED_BLOCKS;
+    protected static final Map<Block, Pair<Predicate<ItemUsageContext>, Consumer<ItemUsageContext>>> TILLING_ACTIONS;
 
     public BasicHoeItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
         super((float)attackDamage, attackSpeed, material, BlockTags.HOE_MINEABLE, settings);
@@ -31,7 +30,7 @@ public class BasicHoeItem extends MiningToolItem {
     public ActionResult useOnBlock(ItemUsageContext context) {
         World world = context.getWorld();
         BlockPos blockPos = context.getBlockPos();
-        Pair<Predicate<ItemUsageContext>, Consumer<ItemUsageContext>> pair = (Pair)TILLED_BLOCKS.get(world.getBlockState(blockPos).getBlock());
+        Pair<Predicate<ItemUsageContext>, Consumer<ItemUsageContext>> pair = (Pair)TILLING_ACTIONS.get(world.getBlockState(blockPos).getBlock());
         if (pair == null) {
             return ActionResult.PASS;
         } else {
@@ -56,26 +55,26 @@ public class BasicHoeItem extends MiningToolItem {
         }
     }
 
-    public static Consumer<ItemUsageContext> getTillingConsumer(BlockState state) {
+    public static Consumer<ItemUsageContext> createTillAction(BlockState result) {
         return (context) -> {
-            context.getWorld().setBlockState(context.getBlockPos(), state, 11);
+            context.getWorld().setBlockState(context.getBlockPos(), result, 11);
         };
     }
 
-    public static Consumer<ItemUsageContext> getTillingConsumer(BlockState state, ItemConvertible dropItem) {
+    public static Consumer<ItemUsageContext> createTillAndDropAction(BlockState result, ItemConvertible droppedItem) {
         return (context) -> {
-            context.getWorld().setBlockState(context.getBlockPos(), state, 11);
-            Block.dropStack(context.getWorld(), context.getBlockPos(), context.getSide(), new ItemStack(dropItem));
+            context.getWorld().setBlockState(context.getBlockPos(), result, 11);
+            Block.dropStack(context.getWorld(), context.getBlockPos(), context.getSide(), new ItemStack(droppedItem));
         };
     }
 
-    public static boolean usagePredicate(ItemUsageContext context) {
+    public static boolean canTillFarmland(ItemUsageContext context) {
         return context.getSide() != Direction.DOWN && context.getWorld().getBlockState(context.getBlockPos().up()).isAir();
     }
 
     static {
-        TILLED_BLOCKS = Maps.newHashMap(ImmutableMap.of(Blocks.GRASS_BLOCK, Pair.of(HoeItem::usagePredicate, getTillingConsumer(Blocks.FARMLAND.getDefaultState())), Blocks.DIRT_PATH, Pair.of(HoeItem::usagePredicate, getTillingConsumer(Blocks.FARMLAND.getDefaultState())), Blocks.DIRT, Pair.of(HoeItem::usagePredicate, getTillingConsumer(Blocks.FARMLAND.getDefaultState())), Blocks.COARSE_DIRT, Pair.of(HoeItem::usagePredicate, getTillingConsumer(Blocks.DIRT.getDefaultState())), Blocks.ROOTED_DIRT, Pair.of((itemUsageContext) -> {
+        TILLING_ACTIONS = Maps.newHashMap(ImmutableMap.of(Blocks.GRASS_BLOCK, Pair.of(HoeItem::canTillFarmland, createTillAction(Blocks.FARMLAND.getDefaultState())), Blocks.DIRT_PATH, Pair.of(HoeItem::canTillFarmland, createTillAction(Blocks.FARMLAND.getDefaultState())), Blocks.DIRT, Pair.of(HoeItem::canTillFarmland, createTillAction(Blocks.FARMLAND.getDefaultState())), Blocks.COARSE_DIRT, Pair.of(HoeItem::canTillFarmland, createTillAction(Blocks.DIRT.getDefaultState())), Blocks.ROOTED_DIRT, Pair.of((itemUsageContext) -> {
             return true;
-        }, getTillingConsumer(Blocks.DIRT.getDefaultState(), Items.HANGING_ROOTS))));
+        }, createTillAndDropAction(Blocks.DIRT.getDefaultState(), Items.HANGING_ROOTS))));
     }
 }

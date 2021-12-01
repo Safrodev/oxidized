@@ -12,9 +12,9 @@ import java.util.Random;
 
 public class CustomOxidizableBlock extends Block implements Oxidizable {
 
-    private final OxidizationLevel oxidizationLevel;
+    private final OxidationLevel oxidizationLevel;
 
-    public CustomOxidizableBlock(OxidizationLevel oxidizationLevel, Settings settings) {
+    public CustomOxidizableBlock(OxidationLevel oxidizationLevel, Settings settings) {
         super(settings);
         this.oxidizationLevel = oxidizationLevel;
     }
@@ -33,7 +33,7 @@ public class CustomOxidizableBlock extends Block implements Oxidizable {
     }
 
     @Override
-    public OxidizationLevel getDegradationLevel() {
+    public OxidationLevel getDegradationLevel() {
         return this.oxidizationLevel;
     }
 }

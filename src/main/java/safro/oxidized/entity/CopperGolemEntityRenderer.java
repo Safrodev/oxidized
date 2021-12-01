@@ -17,11 +17,11 @@ public class CopperGolemEntityRenderer extends MobEntityRenderer<CopperGolemEnti
     }
 
     public Identifier getTexture(CopperGolemEntity entity) {
-        if (entity.getOxidizationLevel() == Oxidizable.OxidizationLevel.EXPOSED) {
+        if (entity.getOxidizationLevel() == Oxidizable.OxidationLevel.EXPOSED) {
             return EXPOSED;
-        } else if (entity.getOxidizationLevel() == Oxidizable.OxidizationLevel.WEATHERED) {
+        } else if (entity.getOxidizationLevel() == Oxidizable.OxidationLevel.WEATHERED) {
             return WEATHERED;
-        } else if (entity.getOxidizationLevel() == Oxidizable.OxidizationLevel.OXIDIZED) {
+        } else if (entity.getOxidizationLevel() == Oxidizable.OxidationLevel.OXIDIZED) {
             return OXIDIZED;
         } else
             return UNAFFECTED;

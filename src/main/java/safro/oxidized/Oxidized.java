@@ -1,8 +1,8 @@
 package safro.oxidized;
 
-import draylar.omegaconfig.OmegaConfig;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
@@ -13,18 +13,21 @@ import safro.oxidized.registry.BlockRegistry;
 import safro.oxidized.registry.EntityRegistry;
 import safro.oxidized.registry.ItemRegistry;
 
+import java.io.File;
+
 public class Oxidized implements ModInitializer {
 
 	public static ItemGroup ITEMGROUP = FabricItemGroupBuilder.build(
 			new Identifier("oxidized", "item_group"),
 			() -> new ItemStack(ItemRegistry.COPPER_PULSAR));
 
-	public static final OxidizedConfig CONFIG = OmegaConfig.register(OxidizedConfig.class);
 	public static final Logger LOGGER = LogManager.getLogger("oxidized");
+	public static OxidizedConfig CONFIG;
 
 	@Override
 	public void onInitialize() {
 		System.out.println("Oxidizing your Copper!");
+		CONFIG = OxidizedConfig.loadConfig(new File(FabricLoader.getInstance().getConfigDir() + "/oxidized_config.json"));
 
 		BlockRegistry.init();
 		ItemRegistry.init();
