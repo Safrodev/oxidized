@@ -43,11 +43,15 @@ public class CopperGolemEntityModel extends EntityModel<CopperGolemEntity> {
 		this.right_leg.yaw = 0.0F;
 		this.left_leg.yaw = 0.0F;
 	 	if (entity.isPressingButtons()) {
-			this.right_arm.pitch = -2.0F + 1.5F * MathHelper.wrap((float)i - h, 10.0F);
-			this.left_arm.pitch = -2.0F + 1.5F * MathHelper.wrap((float)i - h, 10.0F);
+			this.right_arm.pivotZ = -0.5F;
+			this.left_arm.pivotZ = -0.5F;
+			this.right_arm.pitch = 6.1F;
+			this.left_arm.pitch = 6.1F;
 		} else {
-			this.right_arm.pitch = (-0.2F + 1.5F * MathHelper.wrap(f, 13.0F)) * g;
-			this.left_arm.pitch = (-0.2F - 1.5F * MathHelper.wrap(f, 13.0F)) * g;
+	 		this.right_arm.pivotZ = 0F;
+	 		this.left_arm.pivotZ = 0F;
+			this.right_arm.pitch = 0F;
+			this.left_arm.pitch = 0F;
 		}
 	}
 

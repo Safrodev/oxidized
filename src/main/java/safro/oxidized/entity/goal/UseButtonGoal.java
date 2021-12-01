@@ -6,6 +6,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
+import safro.oxidized.Oxidized;
 import safro.oxidized.block.CopperButtonBlock;
 import safro.oxidized.entity.CopperGolemEntity;
 import safro.oxidized.registry.BlockRegistry;
@@ -37,13 +38,13 @@ public class UseButtonGoal extends MoveToTargetPosGoal {
 
     public void tick() {
         if (this.hasReached()) {
-            if (this.hasButton(targetPos) && button != null && buttonPos != null) {
+        //    if (this.hasButton(targetPos) && button != null && buttonPos != null) {
                 this.golem.setPressingButtons(true);
-                if (button.getBlock() instanceof CopperButtonBlock copperButton && MathHelper.nextInt(golem.getRandom(), 1, 20) == 2) {
-                    copperButton.powerOn(button, this.golem.world, buttonPos);
+                if (MathHelper.nextInt(golem.getRandom(), 1, Oxidized.CONFIG.button_chance) == 2) {
+                    BlockState state = this.golem.world.getBlockState(this.targetPos);
+                    ((CopperButtonBlock) state.getBlock()).onUse(state, this.mob.world, this.targetPos, null, null, null);
                 }
-            //    Oxidized.LOGGER.info("Pressing Button");
-            }
+        //    }
         }
         super.tick();
     }
@@ -54,7 +55,7 @@ public class UseButtonGoal extends MoveToTargetPosGoal {
     }
 
     protected BlockPos getTargetPos() {
-        return this.getStandablePos(targetPos);
+        return this.targetPos;
     }
 
     private BlockPos getStandablePos(BlockPos pos) {
@@ -111,5 +112,9 @@ public class UseButtonGoal extends MoveToTargetPosGoal {
             button = null;
             buttonPos = null;
             return false;
+    }
+
+    public double getDesiredSquaredDistanceToTarget() {
+        return 0.75D;
     }
 }

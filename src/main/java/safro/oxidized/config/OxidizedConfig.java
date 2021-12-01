@@ -24,4 +24,8 @@ public class OxidizedConfig implements Config {
     public float sand_chance = 0.24F;
     public float gravel_chance = 0.12F;
     public float emerald_chance = 0.02F;
+
+    public String copper_golem_info = "The below value can be set to a number from 3 to 2,147,483,647. The higher the value, the less often the golem will push buttons. Default is 30";
+
+    public int button_chance = 30;
 }
