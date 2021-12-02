@@ -15,7 +15,7 @@ public class CopperKilnRecipe extends AbstractCookingRecipe {
     }
 
     public ItemStack createIcon() {
-        return new ItemStack(Blocks.COPPER_BLOCK);
+        return new ItemStack(BlockRegistry.COPPER_KILN);
     }
 
     @Override

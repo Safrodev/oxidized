@@ -23,6 +23,9 @@
     ],
     "client": [
       "safro.oxidized.OxidizedClient"
+    ],
+    "rei": [
+      "safro.oxidized.rei.OxidizedREIPlugin"
     ]
   },
   "mixins": [

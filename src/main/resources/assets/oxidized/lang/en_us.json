@@ -25,5 +25,6 @@
 
   "gui.recipebook.toggleRecipes.kiln": "Showing Kiln Recipes",
   "itemGroup.oxidized.item_group": "Oxidized",
-  "container.oxidized.copper_kiln": "Copper Kiln"
+  "container.oxidized.copper_kiln": "Copper Kiln",
+  "category.oxidized.kiln_smelting": "Copper Kiln Smelting"
 }
