@@ -17,6 +17,8 @@ public class OxidizedConfig {
     public float gravel_chance = 0.12F;
     public float emerald_chance = 0.02F;
     public int copper_golem_button_chance = 30;
+    public boolean enable_copper_golem = true;
+    public boolean enable_rose_gold_tools = true;
 
     public static OxidizedConfig loadConfig(File file) {
         OxidizedConfig config;

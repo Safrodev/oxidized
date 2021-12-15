@@ -45,13 +45,11 @@ public class CopperPanBlock extends Block implements Waterloggable {
                 world.setBlockState(pos, (BlockState) state.with(PANNED, i + 1), 2);
             } else {
                 world.playSound((PlayerEntity) null, pos, SoundEvents.ENTITY_FISHING_BOBBER_SPLASH, SoundCategory.BLOCKS, 0.7F, 0.9F + random.nextFloat() * 0.2F);
-                ItemStack itemStack = new ItemStack(getPannedItem(random));
-                ItemEntity itemEntity = new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), itemStack);
-                double d = pos.getX();
-                double e = pos.getY();
-                double f = pos.getZ();
-                double g = 0.1D;
-                itemEntity.setVelocity(2 * 0.1D, 2 * 0.1D + Math.sqrt(Math.sqrt(2 * 2 + 2 * 2 + 2 * 2)) * 0.08D, 2 * 0.1D);
+                double d = (double)(world.random.nextFloat() * 0.7F) + 0.15000000596046448D;
+                double e = (double)(world.random.nextFloat() * 0.7F) + 0.06000000238418579D + 0.6D;
+                double g = (double)(world.random.nextFloat() * 0.7F) + 0.15000000596046448D;
+                ItemEntity itemEntity = new ItemEntity(world, (double)pos.getX() + d, (double)pos.getY() + e, (double)pos.getZ() + g, new ItemStack(getPannedItem(random)));
+                itemEntity.setToDefaultPickupDelay();
                 world.spawnEntity(itemEntity);
             }
         }

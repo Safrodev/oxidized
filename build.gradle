@@ -20,10 +20,10 @@ loom {
 }
 
 dependencies {
-	minecraft "com.mojang:minecraft:1.18"
-	mappings "net.fabricmc:yarn:1.18+build.1:v2"
-	modImplementation "net.fabricmc:fabric-loader:0.12.7"
-	modImplementation "net.fabricmc.fabric-api:fabric-api:0.43.1+1.18"
+	minecraft "com.mojang:minecraft:1.18.1"
+	mappings "net.fabricmc:yarn:1.18.1+build.5:v2"
+	modImplementation "net.fabricmc:fabric-loader:0.12.12"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:0.44.0+1.18"
 
 	// REI
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${project.rei_version}"

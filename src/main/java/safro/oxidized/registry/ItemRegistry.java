@@ -26,10 +26,13 @@ public class ItemRegistry {
 
         Registry.register(Registry.ITEM, new Identifier("oxidized", "copper_pulsar"), COPPER_PULSAR);
         Registry.register(Registry.ITEM, new Identifier("oxidized", "copper_nugget"), COPPER_NUGGET);
-        Registry.register(Registry.ITEM, new Identifier("oxidized", "rose_gold_axe"), ROSE_GOLD_AXE);
-        Registry.register(Registry.ITEM, new Identifier("oxidized", "rose_gold_hoe"), ROSE_GOLD_HOE);
-        Registry.register(Registry.ITEM, new Identifier("oxidized", "rose_gold_pickaxe"), ROSE_GOLD_PICKAXE);
-        Registry.register(Registry.ITEM, new Identifier("oxidized", "rose_gold_shovel"), ROSE_GOLD_SHOVEL);
-        Registry.register(Registry.ITEM, new Identifier("oxidized", "rose_gold_sword"), ROSE_GOLD_SWORD);
+
+        if (Oxidized.CONFIG.enable_rose_gold_tools) {
+            Registry.register(Registry.ITEM, new Identifier("oxidized", "rose_gold_axe"), ROSE_GOLD_AXE);
+            Registry.register(Registry.ITEM, new Identifier("oxidized", "rose_gold_hoe"), ROSE_GOLD_HOE);
+            Registry.register(Registry.ITEM, new Identifier("oxidized", "rose_gold_pickaxe"), ROSE_GOLD_PICKAXE);
+            Registry.register(Registry.ITEM, new Identifier("oxidized", "rose_gold_shovel"), ROSE_GOLD_SHOVEL);
+            Registry.register(Registry.ITEM, new Identifier("oxidized", "rose_gold_sword"), ROSE_GOLD_SWORD);
+        }
     }
 }

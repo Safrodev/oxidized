@@ -9,7 +9,7 @@
       "tag": "c:copper_ingots"
     },
     "G": {
-      "item": "minecraft:gold_nugget"
+      "item": "minecraft:string"
     }
   },
   "result": {

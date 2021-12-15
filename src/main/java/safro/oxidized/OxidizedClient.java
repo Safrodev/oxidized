@@ -19,8 +19,10 @@ public class OxidizedClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        EntityRendererRegistry.INSTANCE.register(EntityRegistry.COPPER_GOLEM, CopperGolemEntityRenderer::new);
-        EntityModelLayerRegistry.registerModelLayer(COPPER_GOLEM_LAYER, CopperGolemEntityModel::getTexturedModelData);
+        if (Oxidized.CONFIG.enable_copper_golem) {
+            EntityRendererRegistry.INSTANCE.register(EntityRegistry.COPPER_GOLEM, CopperGolemEntityRenderer::new);
+            EntityModelLayerRegistry.registerModelLayer(COPPER_GOLEM_LAYER, CopperGolemEntityModel::getTexturedModelData);
+        }
 
         BlockRenderLayerMap.INSTANCE.putBlock(BlockRegistry.COPPER_RAIL, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(BlockRegistry.COPPER_KILN, RenderLayer.getCutout());
