@@ -22,6 +22,8 @@ public class ItemRegistry {
     public static final ToolItem ROSE_GOLD_AXE = new BasicAxeItem(RoseGoldMaterial.ROSE_GOLD, 6.0F, -3.0F, new FabricItemSettings().group(Oxidized.ITEMGROUP));
     public static final ToolItem ROSE_GOLD_HOE = new BasicHoeItem(RoseGoldMaterial.ROSE_GOLD, 0, -3.0F, new FabricItemSettings().group(Oxidized.ITEMGROUP));
 
+    public static final Item COPPER_GOLEM_SPAWN_EGG = new SpawnEggItem(EntityRegistry.COPPER_GOLEM, 0x996613, 0xD8A654, new FabricItemSettings().group(Oxidized.ITEMGROUP));
+
     public static void init() {
 
         Registry.register(Registry.ITEM, new Identifier("oxidized", "copper_pulsar"), COPPER_PULSAR);
@@ -33,6 +35,9 @@ public class ItemRegistry {
             Registry.register(Registry.ITEM, new Identifier("oxidized", "rose_gold_pickaxe"), ROSE_GOLD_PICKAXE);
             Registry.register(Registry.ITEM, new Identifier("oxidized", "rose_gold_shovel"), ROSE_GOLD_SHOVEL);
             Registry.register(Registry.ITEM, new Identifier("oxidized", "rose_gold_sword"), ROSE_GOLD_SWORD);
+        }
+        if (Oxidized.CONFIG.enable_copper_golem) {
+            Registry.register(Registry.ITEM, new Identifier("oxidized", "copper_golem_spawn_egg"), COPPER_GOLEM_SPAWN_EGG);
         }
     }
 }
