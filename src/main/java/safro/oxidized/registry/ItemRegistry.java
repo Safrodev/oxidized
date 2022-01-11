@@ -25,8 +25,10 @@ public class ItemRegistry {
     public static final Item COPPER_GOLEM_SPAWN_EGG = new SpawnEggItem(EntityRegistry.COPPER_GOLEM, 0x996613, 0xD8A654, new FabricItemSettings().group(Oxidized.ITEMGROUP));
 
     public static void init() {
+        if (Oxidized.CONFIG.enable_copper_pulsar) {
+            Registry.register(Registry.ITEM, new Identifier("oxidized", "copper_pulsar"), COPPER_PULSAR);
+        }
 
-        Registry.register(Registry.ITEM, new Identifier("oxidized", "copper_pulsar"), COPPER_PULSAR);
         Registry.register(Registry.ITEM, new Identifier("oxidized", "copper_nugget"), COPPER_NUGGET);
 
         if (Oxidized.CONFIG.enable_rose_gold_tools) {
@@ -36,6 +38,7 @@ public class ItemRegistry {
             Registry.register(Registry.ITEM, new Identifier("oxidized", "rose_gold_shovel"), ROSE_GOLD_SHOVEL);
             Registry.register(Registry.ITEM, new Identifier("oxidized", "rose_gold_sword"), ROSE_GOLD_SWORD);
         }
+
         if (Oxidized.CONFIG.enable_copper_golem) {
             Registry.register(Registry.ITEM, new Identifier("oxidized", "copper_golem_spawn_egg"), COPPER_GOLEM_SPAWN_EGG);
         }

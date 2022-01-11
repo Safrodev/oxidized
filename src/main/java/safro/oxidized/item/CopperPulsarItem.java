@@ -83,7 +83,7 @@ public class CopperPulsarItem extends Item {
         return MagnetMode.INACTIVE;
     }
 
-    private void toggleMode(ItemStack magnet)
+    public void toggleMode(ItemStack magnet)
     {
         MagnetMode currentMode = getMagnetMode(magnet);
 

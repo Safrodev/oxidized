@@ -10,14 +10,19 @@ public class OxidizedConfig {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
     public int copper_rail_range = 50;
+
+    public boolean enable_copper_pulsar = true;
     public int pulsar_reach = 10;
+
     public float iron_nugget_chance = 0.15F;
     public float gold_nugget_chance = 0.15F;
     public float sand_chance = 0.24F;
     public float gravel_chance = 0.12F;
     public float emerald_chance = 0.02F;
+
     public int copper_golem_button_chance = 30;
     public boolean enable_copper_golem = true;
+
     public boolean enable_rose_gold_tools = true;
 
     public static OxidizedConfig loadConfig(File file) {
