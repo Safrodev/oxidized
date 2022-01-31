@@ -40,14 +40,15 @@ public class CopperPanBlock extends Block implements Waterloggable {
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         int i = (Integer)state.get(PANNED);
+		float range = 0.55F;
         if (state.getFluidState().isIn(FluidTags.WATER) && isSpecialBlockBelow(world, pos)) {
             if (i < 2) {
                 world.setBlockState(pos, (BlockState) state.with(PANNED, i + 1), 2);
             } else {
-                world.playSound((PlayerEntity) null, pos, SoundEvents.ENTITY_FISHING_BOBBER_SPLASH, SoundCategory.BLOCKS, 0.7F, 0.9F + random.nextFloat() * 0.2F);
-                double d = (double)(world.random.nextFloat() * 0.7F) + 0.15000000596046448D;
-                double e = (double)(world.random.nextFloat() * 0.7F) + 0.06000000238418579D + 0.6D;
-                double g = (double)(world.random.nextFloat() * 0.7F) + 0.15000000596046448D;
+                world.playSound((PlayerEntity) null, pos, SoundEvents.ENTITY_FISHING_BOBBER_SPLASH, SoundCategory.BLOCKS, 0.4F, 0.9F + random.nextFloat() * 0.2F);
+                double d = (double)(world.random.nextFloat() * range) + (1-range)/2;
+                double e = 0.66000000238418579D;
+                double g = (double)(world.random.nextFloat() * range) + (1-range)/2;
                 ItemEntity itemEntity = new ItemEntity(world, (double)pos.getX() + d, (double)pos.getY() + e, (double)pos.getZ() + g, new ItemStack(getPannedItem(random)));
                 itemEntity.setToDefaultPickupDelay();
                 world.spawnEntity(itemEntity);
