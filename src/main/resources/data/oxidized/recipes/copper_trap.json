@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "F F",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "tag": "c:copper_ingots"
+    },
+    "F": {
+      "item": "minecraft:flint"
+    }
+  },
+  "result": {
+    "item": "oxidized:copper_trap",
+    "count": 1
+  }
+}

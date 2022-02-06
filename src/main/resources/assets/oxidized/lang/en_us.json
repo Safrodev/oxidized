@@ -21,8 +21,11 @@
   "block.oxidized.copper_lantern": "Copper Lantern",
   "block.oxidized.copper_pan": "Copper Pan",
   "block.oxidized.copper_button": "Copper Button",
+  "block.oxidized.copper_trap": "Copper Trap",
 
   "entity.oxidized.copper_golem": "Copper Golem",
+
+  "death.attack.trap": "%s was caught in a trap",
 
   "gui.recipebook.toggleRecipes.kiln": "Showing Kiln Recipes",
   "itemGroup.oxidized.item_group": "Oxidized",

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "closed=false": {
+      "model": "oxidized:block/copper_trap"
+    },
+    "closed=true": {
+      "model": "oxidized:block/copper_trap_closed"
+    }
+  }
+}

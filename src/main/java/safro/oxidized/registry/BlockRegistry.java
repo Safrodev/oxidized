@@ -24,6 +24,7 @@ import safro.oxidized.recipe.CopperKilnRecipe;
 import java.util.function.ToIntFunction;
 
 public class BlockRegistry {
+    // This registry code is very messy and inefficient, I do not recommend using this as an example
 
     private static ToIntFunction<BlockState> createLightLevelBlockstate(int litLevel) {
         return (state) -> {
@@ -40,18 +41,17 @@ public class BlockRegistry {
     public static final Block WAXED_VERTICAL_EXPOSED_CUT_COPPER = new Block(AbstractBlock.Settings.copy(BlockRegistry.VERTICAL_CUT_COPPER));
     public static final Block WAXED_VERTICAL_WEATHERED_CUT_COPPER = new Block(AbstractBlock.Settings.copy(BlockRegistry.VERTICAL_CUT_COPPER));
     public static final Block WAXED_VERTICAL_OXIDIZED_CUT_COPPER = new Block(AbstractBlock.Settings.copy(BlockRegistry.VERTICAL_CUT_COPPER));
-    public static final LanternBlock COPPER_LANTERN = new LanternBlock(FabricBlockSettings.of(Material.METAL).requiresTool().strength(3.5F).sounds(BlockSoundGroup.LANTERN).luminance((state) -> {
-        return 15;
-    }).nonOpaque());
-    public static final Block COPPER_PAN = new CopperPanBlock(FabricBlockSettings.of(Material.METAL).mapColor(MapColor.ORANGE).sounds(BlockSoundGroup.COPPER).requiresTool().strength(3.0F, 6.0F).ticksRandomly());
+    public static final LanternBlock COPPER_LANTERN = new LanternBlock(FabricBlockSettings.of(Material.METAL).requiresTool().strength(3.5F).sounds(BlockSoundGroup.LANTERN).luminance((state) -> {return 15;}).nonOpaque());
+    public static final Block COPPER_PAN = new CopperPanBlock(blockWithStrength(3.0F, 6.0F).ticksRandomly());
     public static final Block COPPER_BUTTON = new CopperButtonBlock(AbstractBlock.Settings.of(Material.DECORATION).noCollision().strength(0.5F).sounds(BlockSoundGroup.COPPER));
 
-    public static final Block COPPER_KILN = new CopperKilnBlock(FabricBlockSettings.of(Material.METAL).mapColor(MapColor.ORANGE).requiresTool().strength(3.5F, 6.0F).luminance(createLightLevelBlockstate(13)).sounds(BlockSoundGroup.COPPER).nonOpaque());
+    public static final Block COPPER_KILN = new CopperKilnBlock(blockWithStrength(3.5F, 6.0F).luminance(createLightLevelBlockstate(13)).nonOpaque());
     public static BlockEntityType<CopperKilnBlockEntity> COPPER_KILN_BLOCK_ENTITY;
     public static final ScreenHandlerType<CopperKilnScreenHandler> COPPER_KILN_SCREEN_HANDLER = ScreenHandlerRegistry.registerSimple(new Identifier("oxidized", "copper_kiln_screen_handler"), CopperKilnScreenHandler::new);;
     public static final RecipeType<CopperKilnRecipe> COPPER_KILN_RECIPE_TYPE = RecipeType.register("oxidized:kiln_smelting");
     public static final RecipeSerializer<CopperKilnRecipe> COPPER_KILN_RECIPE_SERIALIZER = Registry.register(Registry.RECIPE_SERIALIZER, new Identifier("oxidized", "kiln_smelting"), new CookingRecipeSerializer<>(CopperKilnRecipe::new, 100));
 
+    public static final Block COPPER_TRAP = new CopperTrapBlock(blockWithStrength(2.0F, 3.0F).noCollision());
 
     public static void init() {
 
@@ -74,14 +74,25 @@ public class BlockRegistry {
         Registry.register(Registry.BLOCK, new Identifier("oxidized", "waxed_vertical_oxidized_cut_copper"), WAXED_VERTICAL_OXIDIZED_CUT_COPPER);
         Registry.register(Registry.ITEM, new Identifier("oxidized", "waxed_vertical_oxidized_cut_copper"), new BlockItem(WAXED_VERTICAL_OXIDIZED_CUT_COPPER, new FabricItemSettings().group(Oxidized.ITEMGROUP)));
         Registry.register(Registry.BLOCK, new Identifier("oxidized", "copper_lantern"), COPPER_LANTERN);
-        Registry.register(Registry.ITEM, new Identifier("oxidized", "copper_lantern"), new BlockItem(COPPER_LANTERN, new FabricItemSettings().group(Oxidized.ITEMGROUP)));
+        Registry.register(Registry.ITEM, new Identifier("oxidized", "copper_lantern"), getItem(COPPER_LANTERN));
         Registry.register(Registry.BLOCK, new Identifier("oxidized", "copper_pan"), COPPER_PAN);
-        Registry.register(Registry.ITEM, new Identifier("oxidized", "copper_pan"), new BlockItem(COPPER_PAN, new FabricItemSettings().group(Oxidized.ITEMGROUP)));
+        Registry.register(Registry.ITEM, new Identifier("oxidized", "copper_pan"), getItem(COPPER_PAN));
         Registry.register(Registry.BLOCK, new Identifier("oxidized", "copper_button"), COPPER_BUTTON);
-        Registry.register(Registry.ITEM, new Identifier("oxidized", "copper_button"), new BlockItem(COPPER_BUTTON, new FabricItemSettings().group(Oxidized.ITEMGROUP)));
+        Registry.register(Registry.ITEM, new Identifier("oxidized", "copper_button"), getItem(COPPER_BUTTON));
         Registry.register(Registry.BLOCK, new Identifier("oxidized", "copper_kiln"), COPPER_KILN);
-        Registry.register(Registry.ITEM, new Identifier("oxidized", "copper_kiln"), new BlockItem(COPPER_KILN, new FabricItemSettings().group(Oxidized.ITEMGROUP)));
+        Registry.register(Registry.ITEM, new Identifier("oxidized", "copper_kiln"), getItem(COPPER_KILN));
+
+        Registry.register(Registry.BLOCK, new Identifier("oxidized", "copper_trap"), COPPER_TRAP);
+        Registry.register(Registry.ITEM, new Identifier("oxidized", "copper_trap"), getItem(COPPER_TRAP));
 
         COPPER_KILN_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, "oxidized:copper_kiln_block_entity", FabricBlockEntityTypeBuilder.create(CopperKilnBlockEntity::new, COPPER_KILN).build(null));
+    }
+
+    private static FabricBlockSettings blockWithStrength(float hardness, float resistance) {
+        return FabricBlockSettings.of(Material.METAL).mapColor(MapColor.ORANGE).strength(hardness, resistance).requiresTool().sounds(BlockSoundGroup.COPPER);
+    }
+
+    private static BlockItem getItem(Block block) {
+        return new BlockItem(block, new FabricItemSettings().group(Oxidized.ITEMGROUP));
     }
 }

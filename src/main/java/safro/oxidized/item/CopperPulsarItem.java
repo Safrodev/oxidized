@@ -13,6 +13,7 @@ import net.minecraft.text.LiteralText;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
 import safro.oxidized.Oxidized;
 
@@ -28,28 +29,24 @@ public class CopperPulsarItem extends Item {
 
     @Override
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
-
-        if(!world.isClient && isActive(stack))
-        {
+        if(!world.isClient && isActive(stack)) {
             ServerPlayerEntity player = (ServerPlayerEntity) entity;
+            Box box = player.getBoundingBox().expand(Oxidized.CONFIG.pulsar_reach);
 
-            List<ItemEntity> entityItems = player.world.getEntitiesByClass(ItemEntity.class, player.getBoundingBox().expand(Oxidized.CONFIG.pulsar_reach), EntityPredicates.VALID_ENTITY);
-            for (ItemEntity entityItemNearby : entityItems)
-            {
-                entityItemNearby.onPlayerCollision(player);
+            List<ItemEntity> entityItems = player.world.getEntitiesByClass(ItemEntity.class, box, EntityPredicates.VALID_ENTITY);
+            for (ItemEntity item : entityItems) {
+                item.onPlayerCollision(player);
             }
 
             List<ExperienceOrbEntity> entityXP = player.world.getEntitiesByClass(ExperienceOrbEntity.class, player.getBoundingBox().expand(Oxidized.CONFIG.pulsar_reach), EntityPredicates.VALID_ENTITY);
-            for (ExperienceOrbEntity entityXPNearby : entityXP)
-            {
-                entityXPNearby.onPlayerCollision(player);
+            for (ExperienceOrbEntity xp : entityXP) {
+                xp.onPlayerCollision(player);
             }
         }
     }
 
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand)
-    {
+    public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
         ItemStack pulsar = player.getStackInHand(hand);
 
         if (!world.isClient && !player.isSneaking()) {
@@ -57,7 +54,6 @@ public class CopperPulsarItem extends Item {
             player.sendMessage(new LiteralText("§6Pulsar is now: " + getMagnetMode(pulsar)), false);
 
         }
-
         return new TypedActionResult<>(ActionResult.SUCCESS, pulsar);
     }
 
@@ -66,14 +62,12 @@ public class CopperPulsarItem extends Item {
         return getMagnetMode(pulsar).getBoolean();
     }
 
-    private void setMagnetMode(ItemStack pulsar, MagnetMode mode)
-    {
+    private void setMagnetMode(ItemStack pulsar, MagnetMode mode) {
         checkTag(pulsar);
         pulsar.getNbt().putBoolean(POWERED, mode.getBoolean());
     }
 
-    private MagnetMode getMagnetMode(ItemStack pulsar)
-    {
+    private MagnetMode getMagnetMode(ItemStack pulsar) {
         if (!pulsar.isEmpty())
         {
             checkTag(pulsar);
@@ -83,8 +77,7 @@ public class CopperPulsarItem extends Item {
         return MagnetMode.INACTIVE;
     }
 
-    public void toggleMode(ItemStack magnet)
-    {
+    public void toggleMode(ItemStack magnet) {
         MagnetMode currentMode = getMagnetMode(magnet);
 
         if (currentMode.getBoolean())
@@ -97,8 +90,7 @@ public class CopperPulsarItem extends Item {
         setMagnetMode(magnet, MagnetMode.ACTIVE);
     }
 
-    private void checkTag(ItemStack pulsar)
-    {
+    private void checkTag(ItemStack pulsar) {
         if (!pulsar.isEmpty())
         {
             if (!pulsar.hasNbt())
@@ -114,8 +106,7 @@ public class CopperPulsarItem extends Item {
         }
     }
 
-    public enum MagnetMode
-    {
+    public enum MagnetMode {
         ACTIVE(true), INACTIVE(false);
 
         final boolean state;
