@@ -1,6 +1,5 @@
 package safro.oxidized.entity;
 
-import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.block.Oxidizable;
 import net.minecraft.client.util.ParticleUtil;
 import net.minecraft.entity.Entity;
@@ -18,6 +17,7 @@ import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.GolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.AxeItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
@@ -96,7 +96,7 @@ public class CopperGolemEntity extends GolemEntity {
 
     protected ActionResult interactMob(PlayerEntity player, Hand hand) {
         ItemStack stack = player.getStackInHand(hand);
-        if (stack.isIn(FabricToolTags.AXES) && this.oxidizationLevel != Oxidizable.OxidationLevel.UNAFFECTED) {
+        if (stack.getItem() instanceof AxeItem && this.oxidizationLevel != Oxidizable.OxidationLevel.UNAFFECTED) {
             this.degradeLevel();
             world.playSound(player, player.getBlockPos(), SoundEvents.ITEM_AXE_SCRAPE, SoundCategory.BLOCKS, 1.0F, 1.0F);
             world.syncWorldEvent(player, 3005, player.getBlockPos(), 0);

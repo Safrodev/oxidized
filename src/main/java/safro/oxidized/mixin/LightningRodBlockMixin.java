@@ -36,9 +36,7 @@ public class LightningRodBlockMixin {
             if (world.getBlockState(pos.down()).isOf(Blocks.CARVED_PUMPKIN)) {
                 CopperGolemEntity copperGolemEntity = (CopperGolemEntity) EntityRegistry.COPPER_GOLEM.create(world);
                 copperGolemEntity.refreshPositionAndAngles((double) pos.getX() + 0.5D, (double) pos.getY() + 0.05D, (double) pos.getZ() + 0.5D, 0.0F, 0.0F);
-                world.setBlockState(pos, Blocks.AIR.getDefaultState());
-                world.setBlockState(pos.down(), Blocks.AIR.getDefaultState());
-                world.updateNeighbors(pos, Blocks.AIR);
+                update(world, pos);
                 world.addParticle(new BlockStateParticleEffect(ParticleTypes.BLOCK, Blocks.COPPER_BLOCK.getDefaultState()), pos.getX() + ((double) world.random.nextFloat() - 0.5D) * (double) 1.4F, pos.getY() + 0.1D, pos.getZ() + ((double) world.random.nextFloat() - 0.5D) * (double) 1.4F, 4.0D * ((double) world.random.nextFloat() - 0.5D), 0.5D, ((double) world.random.nextFloat() - 0.5D) * 4.0D);
                 world.spawnEntity(copperGolemEntity);
                 var6 = world.getNonSpectatingEntities(ServerPlayerEntity.class, copperGolemEntity.getBoundingBox().expand(5.0D)).iterator();
@@ -49,5 +47,14 @@ public class LightningRodBlockMixin {
                 }
             }
         }
+    }
+
+    private void update(World world, BlockPos pos) {
+        world.setBlockState(pos, Blocks.AIR.getDefaultState());
+        world.setBlockState(pos.down(), Blocks.AIR.getDefaultState());
+        world.setBlockState(pos.down().down(), Blocks.AIR.getDefaultState());
+        world.updateNeighbors(pos, Blocks.AIR);
+        world.updateNeighbors(pos.down(), Blocks.AIR);
+        world.updateNeighbors(pos.down().down(), Blocks.AIR);
     }
 }
