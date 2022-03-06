@@ -21,8 +21,11 @@
   "block.oxidized.copper_lantern": "Медный фонарь",
   "block.oxidized.copper_pan": "Медный лоток",
   "block.oxidized.copper_button": "Медная кнопка",
+  "block.oxidized.copper_trap": "Медный капкан",
 
   "entity.oxidized.copper_golem": "Медный голем",
+  
+  "death.attack.trap": "%s угодил в капкан",
 
   "gui.recipebook.toggleRecipes.kiln": "Рецепты для медного горна",
   "itemGroup.oxidized.item_group": "Oxidized",
