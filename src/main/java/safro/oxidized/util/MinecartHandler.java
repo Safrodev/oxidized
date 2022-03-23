@@ -8,7 +8,7 @@ import safro.oxidized.mixin.MinecartEntityAccessor;
 
 public class MinecartHandler {
 
-    public static void HandleBlockHit(BlockPos pos, AbstractMinecartEntity minecart, RailShape railShape) {
+    public static void handleBlockHit(BlockPos pos, AbstractMinecartEntity minecart, RailShape railShape) {
         double x = minecart.getVelocity().x;
         double z = minecart.getVelocity().z;
         if (railShape == RailShape.EAST_WEST) {

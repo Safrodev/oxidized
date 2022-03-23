@@ -28,7 +28,7 @@ public class CopperRailBlock extends AbstractRailBlock {
 
     public CopperRailBlock(AbstractBlock.Settings settings) {
         super(true, settings);
-        this.setDefaultState((BlockState)((BlockState)((BlockState)((BlockState)this.stateManager.getDefaultState()).with(SHAPE, RailShape.NORTH_SOUTH)).with(POWERED, false)).with(WATERLOGGED, false));
+        this.setDefaultState(this.stateManager.getDefaultState().with(SHAPE, RailShape.NORTH_SOUTH).with(POWERED, false).with(WATERLOGGED, false));
     }
 
     public void onMoveOnRail(BlockPos pos, BlockState state, AbstractMinecartEntity minecart, CallbackInfo info) {
@@ -46,7 +46,7 @@ public class CopperRailBlock extends AbstractRailBlock {
         if (speed > 0.01D) {
             minecart.setVelocity(velocity.normalize().multiply(((MinecartEntityAccessor) minecart).invokeGetMaxOffRailSpeed() * 10D));
         } else {
-            MinecartHandler.HandleBlockHit(pos, minecart, railShape);
+            MinecartHandler.handleBlockHit(pos, minecart, railShape);
         }
     }
 
@@ -58,7 +58,7 @@ public class CopperRailBlock extends AbstractRailBlock {
             int j = pos.getY();
             int k = pos.getZ();
             boolean bl2 = true;
-            RailShape railShape = (RailShape)state.get(SHAPE);
+            RailShape railShape = state.get(SHAPE);
             switch(railShape) {
                 case NORTH_SOUTH:
                     if (bl) {
@@ -132,12 +132,12 @@ public class CopperRailBlock extends AbstractRailBlock {
         if (!blockState.isOf(this)) {
             return false;
         } else {
-            RailShape railShape = (RailShape)blockState.get(SHAPE);
+            RailShape railShape = blockState.get(SHAPE);
             if (shape == RailShape.EAST_WEST && (railShape == RailShape.NORTH_SOUTH || railShape == RailShape.ASCENDING_NORTH || railShape == RailShape.ASCENDING_SOUTH)) {
                 return false;
             } else if (shape == RailShape.NORTH_SOUTH && (railShape == RailShape.EAST_WEST || railShape == RailShape.ASCENDING_EAST || railShape == RailShape.ASCENDING_WEST)) {
                 return false;
-            } else if ((Boolean)blockState.get(POWERED)) {
+            } else if (blockState.get(POWERED)) {
                 return world.isReceivingRedstonePower(pos) ? true : this.isPoweredByOtherRails(world, pos, blockState, bl, distance + 1);
             } else {
                 return false;
@@ -146,12 +146,12 @@ public class CopperRailBlock extends AbstractRailBlock {
     }
 
     public void updateBlockState(BlockState state, World world, BlockPos pos, Block neighbor) {
-        boolean bl = (Boolean)state.get(POWERED);
+        boolean bl = state.get(POWERED);
         boolean bl2 = world.isReceivingRedstonePower(pos) || this.isPoweredByOtherRails(world, pos, state, true, 0) || this.isPoweredByOtherRails(world, pos, state, false, 0);
         if (bl2 != bl) {
-            world.setBlockState(pos, (BlockState)state.with(POWERED, bl2), Block.NOTIFY_ALL);
+            world.setBlockState(pos, state.with(POWERED, bl2), Block.NOTIFY_ALL);
             world.updateNeighborsAlways(pos.down(), this);
-            if (((RailShape)state.get(SHAPE)).isAscending()) {
+            if (state.get(SHAPE).isAscending()) {
                 world.updateNeighborsAlways(pos.up(), this);
             }
         }
@@ -265,7 +265,7 @@ public class CopperRailBlock extends AbstractRailBlock {
                     default:
                         break;
                     case SOUTH_EAST:
-                        return (BlockState)state.with(SHAPE, RailShape.SOUTH_WEST);
+                        return state.with(SHAPE, RailShape.SOUTH_WEST);
                     case SOUTH_WEST:
                         return (BlockState)state.with(SHAPE, RailShape.SOUTH_EAST);
                     case NORTH_WEST:

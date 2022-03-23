@@ -17,16 +17,12 @@ import java.io.File;
 
 public class Oxidized implements ModInitializer {
 
-	public static ItemGroup ITEMGROUP = FabricItemGroupBuilder.build(
-			new Identifier("oxidized", "item_group"),
-			() -> new ItemStack(ItemRegistry.COPPER_PULSAR));
-
+	public static ItemGroup ITEMGROUP = FabricItemGroupBuilder.build(new Identifier("oxidized", "item_group"), () -> new ItemStack(BlockRegistry.COPPER_KILN));
 	public static final Logger LOGGER = LogManager.getLogger("oxidized");
 	public static OxidizedConfig CONFIG;
 
 	@Override
 	public void onInitialize() {
-		System.out.println("Oxidizing your Copper!");
 		CONFIG = OxidizedConfig.loadConfig(new File(FabricLoader.getInstance().getConfigDir() + "/oxidized_config.json"));
 
 		BlockRegistry.init();
