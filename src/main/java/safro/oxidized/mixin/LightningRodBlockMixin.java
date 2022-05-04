@@ -25,7 +25,7 @@ public class LightningRodBlockMixin {
     @Inject(method = "onBlockAdded", at = @At("TAIL"))
     private void checkForGolem(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify, CallbackInfo ci) {
         if (!oldState.isOf(state.getBlock())) {
-            this.trySpawnEntity(world, pos);
+            if (Oxidized.CONFIG.enable_copper_golem) this.trySpawnEntity(world, pos);
         }
     }
 

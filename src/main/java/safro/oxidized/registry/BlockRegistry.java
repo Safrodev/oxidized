@@ -3,6 +3,7 @@ package safro.oxidized.registry;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
+import net.fabricmc.fabric.api.registry.OxidizableBlocksRegistry;
 import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntityType;
@@ -28,15 +29,11 @@ import java.util.function.ToIntFunction;
 public class BlockRegistry {
     private static final Map<Block, Identifier> BLOCKS = new LinkedHashMap<>();
 
-    private static ToIntFunction<BlockState> createLightLevelBlockstate(int litLevel) {
-        return (state) -> (Boolean)state.get(Properties.LIT) ? litLevel : 0;
-    }
-
     public static final Block COPPER_RAIL = register("copper_rail", new CopperRailBlock(AbstractBlock.Settings.of(Material.DECORATION).noCollision().strength(0.7F).sounds(BlockSoundGroup.METAL)), true);
-    public static final Block VERTICAL_CUT_COPPER = register("vertical_cut_copper", new CustomOxidizableBlock(Oxidizable.OxidationLevel.UNAFFECTED, FabricBlockSettings.of(Material.METAL).mapColor(MapColor.ORANGE).sounds(BlockSoundGroup.COPPER).requiresTool().strength(3.0F, 6.0F)), true);
-    public static final Block VERTICAL_EXPOSED_CUT_COPPER = register("vertical_exposed_cut_copper", new CustomOxidizableBlock(Oxidizable.OxidationLevel.EXPOSED, AbstractBlock.Settings.copy(BlockRegistry.VERTICAL_CUT_COPPER)), true);
-    public static final Block VERTICAL_WEATHERED_CUT_COPPER = register("vertical_weathered_cut_copper", new CustomOxidizableBlock(Oxidizable.OxidationLevel.WEATHERED, AbstractBlock.Settings.copy(BlockRegistry.VERTICAL_CUT_COPPER)), true);
-    public static final Block VERTICAL_OXIDIZED_CUT_COPPER = register("vertical_oxidized_cut_copper", new CustomOxidizableBlock(Oxidizable.OxidationLevel.OXIDIZED, AbstractBlock.Settings.copy(BlockRegistry.VERTICAL_CUT_COPPER)), true);
+    public static final Block VERTICAL_CUT_COPPER = register("vertical_cut_copper", new Block(FabricBlockSettings.of(Material.METAL).mapColor(MapColor.ORANGE).sounds(BlockSoundGroup.COPPER).requiresTool().strength(3.0F, 6.0F)), true);
+    public static final Block VERTICAL_EXPOSED_CUT_COPPER = register("vertical_exposed_cut_copper", new Block(AbstractBlock.Settings.copy(BlockRegistry.VERTICAL_CUT_COPPER)), true);
+    public static final Block VERTICAL_WEATHERED_CUT_COPPER = register("vertical_weathered_cut_copper", new Block(AbstractBlock.Settings.copy(BlockRegistry.VERTICAL_CUT_COPPER)), true);
+    public static final Block VERTICAL_OXIDIZED_CUT_COPPER = register("vertical_oxidized_cut_copper", new Block(AbstractBlock.Settings.copy(BlockRegistry.VERTICAL_CUT_COPPER)), true);
     public static final Block WAXED_VERTICAL_CUT_COPPER = register("waxed_vertical_cut_copper", new Block(AbstractBlock.Settings.copy(BlockRegistry.VERTICAL_CUT_COPPER)), true);
     public static final Block WAXED_VERTICAL_EXPOSED_CUT_COPPER = register("waxed_vertical_exposed_cut_copper", new Block(AbstractBlock.Settings.copy(BlockRegistry.VERTICAL_CUT_COPPER)), true);
     public static final Block WAXED_VERTICAL_WEATHERED_CUT_COPPER = register("waxed_vertical_weathered_cut_copper", new Block(AbstractBlock.Settings.copy(BlockRegistry.VERTICAL_CUT_COPPER)), true);
@@ -64,9 +61,26 @@ public class BlockRegistry {
     public static void init() {
         BLOCKS.keySet().forEach(block -> Registry.register(Registry.BLOCK, BLOCKS.get(block), block));
         COPPER_KILN_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, "oxidized:copper_kiln_block_entity", FabricBlockEntityTypeBuilder.create(CopperKilnBlockEntity::new, COPPER_KILN).build(null));
+
+        initOxidizables();
+    }
+
+    private static void initOxidizables() {
+        OxidizableBlocksRegistry.registerOxidizableBlockPair(VERTICAL_CUT_COPPER, VERTICAL_EXPOSED_CUT_COPPER);
+        OxidizableBlocksRegistry.registerOxidizableBlockPair(VERTICAL_EXPOSED_CUT_COPPER, VERTICAL_WEATHERED_CUT_COPPER);
+        OxidizableBlocksRegistry.registerOxidizableBlockPair(VERTICAL_WEATHERED_CUT_COPPER, VERTICAL_OXIDIZED_CUT_COPPER);
+
+        OxidizableBlocksRegistry.registerWaxableBlockPair(VERTICAL_CUT_COPPER, WAXED_VERTICAL_CUT_COPPER);
+        OxidizableBlocksRegistry.registerWaxableBlockPair(VERTICAL_EXPOSED_CUT_COPPER, WAXED_VERTICAL_EXPOSED_CUT_COPPER);
+        OxidizableBlocksRegistry.registerWaxableBlockPair(VERTICAL_WEATHERED_CUT_COPPER, WAXED_VERTICAL_WEATHERED_CUT_COPPER);
+        OxidizableBlocksRegistry.registerWaxableBlockPair(VERTICAL_OXIDIZED_CUT_COPPER, WAXED_VERTICAL_OXIDIZED_CUT_COPPER);
     }
 
     private static FabricBlockSettings blockWithStrength(float hardness, float resistance) {
         return FabricBlockSettings.of(Material.METAL).mapColor(MapColor.ORANGE).strength(hardness, resistance).requiresTool().sounds(BlockSoundGroup.COPPER);
+    }
+
+    private static ToIntFunction<BlockState> createLightLevelBlockstate(int litLevel) {
+        return (state) -> (Boolean)state.get(Properties.LIT) ? litLevel : 0;
     }
 }

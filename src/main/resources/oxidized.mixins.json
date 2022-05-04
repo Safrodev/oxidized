@@ -6,7 +6,6 @@
   "mixins": [
     "MinecartEntityAccessor",
     "MinecartRailMixin",
-    "HoneycombMixin",
     "LightningRodBlockMixin",
     "LivingEntityMixin"
   ],
