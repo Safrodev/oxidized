@@ -30,10 +30,10 @@ public class BlockRegistry {
     private static final Map<Block, Identifier> BLOCKS = new LinkedHashMap<>();
 
     public static final Block COPPER_RAIL = register("copper_rail", new CopperRailBlock(AbstractBlock.Settings.of(Material.DECORATION).noCollision().strength(0.7F).sounds(BlockSoundGroup.METAL)), true);
-    public static final Block VERTICAL_CUT_COPPER = register("vertical_cut_copper", new Block(FabricBlockSettings.of(Material.METAL).mapColor(MapColor.ORANGE).sounds(BlockSoundGroup.COPPER).requiresTool().strength(3.0F, 6.0F)), true);
-    public static final Block VERTICAL_EXPOSED_CUT_COPPER = register("vertical_exposed_cut_copper", new Block(AbstractBlock.Settings.copy(BlockRegistry.VERTICAL_CUT_COPPER)), true);
-    public static final Block VERTICAL_WEATHERED_CUT_COPPER = register("vertical_weathered_cut_copper", new Block(AbstractBlock.Settings.copy(BlockRegistry.VERTICAL_CUT_COPPER)), true);
-    public static final Block VERTICAL_OXIDIZED_CUT_COPPER = register("vertical_oxidized_cut_copper", new Block(AbstractBlock.Settings.copy(BlockRegistry.VERTICAL_CUT_COPPER)), true);
+    public static final Block VERTICAL_CUT_COPPER = register("vertical_cut_copper", new OxidizableBlock(Oxidizable.OxidationLevel.UNAFFECTED, FabricBlockSettings.of(Material.METAL).mapColor(MapColor.ORANGE).sounds(BlockSoundGroup.COPPER).requiresTool().strength(3.0F, 6.0F)), true);
+    public static final Block VERTICAL_EXPOSED_CUT_COPPER = register("vertical_exposed_cut_copper", new OxidizableBlock(Oxidizable.OxidationLevel.EXPOSED, AbstractBlock.Settings.copy(BlockRegistry.VERTICAL_CUT_COPPER)), true);
+    public static final Block VERTICAL_WEATHERED_CUT_COPPER = register("vertical_weathered_cut_copper", new OxidizableBlock(Oxidizable.OxidationLevel.WEATHERED, AbstractBlock.Settings.copy(BlockRegistry.VERTICAL_CUT_COPPER)), true);
+    public static final Block VERTICAL_OXIDIZED_CUT_COPPER = register("vertical_oxidized_cut_copper", new OxidizableBlock(Oxidizable.OxidationLevel.OXIDIZED, AbstractBlock.Settings.copy(BlockRegistry.VERTICAL_CUT_COPPER)), true);
     public static final Block WAXED_VERTICAL_CUT_COPPER = register("waxed_vertical_cut_copper", new Block(AbstractBlock.Settings.copy(BlockRegistry.VERTICAL_CUT_COPPER)), true);
     public static final Block WAXED_VERTICAL_EXPOSED_CUT_COPPER = register("waxed_vertical_exposed_cut_copper", new Block(AbstractBlock.Settings.copy(BlockRegistry.VERTICAL_CUT_COPPER)), true);
     public static final Block WAXED_VERTICAL_WEATHERED_CUT_COPPER = register("waxed_vertical_weathered_cut_copper", new Block(AbstractBlock.Settings.copy(BlockRegistry.VERTICAL_CUT_COPPER)), true);
