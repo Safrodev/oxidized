@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.predicate.entity.EntityPredicates;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
@@ -51,7 +51,7 @@ public class CopperPulsarItem extends Item {
 
         if (!world.isClient && !player.isSneaking()) {
             toggleMode(pulsar);
-            player.sendMessage(new LiteralText("§6Pulsar is now: " + getMagnetMode(pulsar)), false);
+            player.sendMessage(Text.of("§6Pulsar is now: " + getMagnetMode(pulsar)), false);
 
         }
         return new TypedActionResult<>(ActionResult.SUCCESS, pulsar);

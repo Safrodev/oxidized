@@ -2,8 +2,8 @@ package safro.oxidized;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
-import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityModelLayerRegistry;
-import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
@@ -20,8 +20,8 @@ public class OxidizedClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         if (Oxidized.CONFIG.enable_copper_golem) {
-            EntityRendererRegistry.INSTANCE.register(EntityRegistry.COPPER_GOLEM, CopperGolemEntityRenderer::new);
             EntityModelLayerRegistry.registerModelLayer(COPPER_GOLEM_LAYER, CopperGolemEntityModel::getTexturedModelData);
+            EntityRendererRegistry.register(EntityRegistry.COPPER_GOLEM, CopperGolemEntityRenderer::new);
         }
 
         BlockRenderLayerMap.INSTANCE.putBlock(BlockRegistry.COPPER_RAIL, RenderLayer.getCutout());

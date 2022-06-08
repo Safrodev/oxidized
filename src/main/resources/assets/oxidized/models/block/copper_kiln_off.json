@@ -1,5 +1,5 @@
 {
-	"parent": "copper_kiln",
+	"parent": "minecraft:block/block",
 	"texture_size": [32, 32],
 	"textures": {
 		"1": "minecraft:block/copper_block",
