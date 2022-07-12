@@ -19,6 +19,7 @@ public class OxidizedConfig {
     public float sand_chance = 0.24F;
     public float gravel_chance = 0.12F;
     public float emerald_chance = 0.02F;
+    public boolean enable_copper_pan_sound = true;
 
     public int copper_golem_button_chance = 30;
     public boolean enable_copper_golem = true;

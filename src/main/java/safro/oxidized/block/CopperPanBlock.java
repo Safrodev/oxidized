@@ -2,7 +2,6 @@ package safro.oxidized.block;
 
 import net.minecraft.block.*;
 import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.Item;
@@ -38,13 +37,13 @@ public class CopperPanBlock extends Block implements Waterloggable {
 
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        int i = (Integer)state.get(PANNED);
+        int i = state.get(PANNED);
 		float range = 0.55F;
         if (state.getFluidState().isIn(FluidTags.WATER) && isSpecialBlockBelow(world, pos)) {
             if (i < 2) {
-                world.setBlockState(pos, (BlockState) state.with(PANNED, i + 1), 2);
+                world.setBlockState(pos, state.with(PANNED, i + 1), 2);
             } else {
-                world.playSound((PlayerEntity) null, pos, SoundEvents.ENTITY_FISHING_BOBBER_SPLASH, SoundCategory.BLOCKS, 0.4F, 0.9F + random.nextFloat() * 0.2F);
+                if (Oxidized.CONFIG.enable_copper_pan_sound) world.playSound(null, pos, SoundEvents.ENTITY_FISHING_BOBBER_SPLASH, SoundCategory.BLOCKS, 0.4F, 0.9F + random.nextFloat() * 0.2F);
                 double d = (double)(world.random.nextFloat() * range) + (1-range)/2;
                 double e = 0.66000000238418579D;
                 double g = (double)(world.random.nextFloat() * range) + (1-range)/2;
@@ -80,17 +79,17 @@ public class CopperPanBlock extends Block implements Waterloggable {
     }
 
     public FluidState getFluidState(BlockState state) {
-        return (Boolean)state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
+        return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
     }
 
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         FluidState fluidState = ctx.getWorld().getFluidState(ctx.getBlockPos());
-        return (BlockState) this.getDefaultState().with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
+        return this.getDefaultState().with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
     }
 
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        if ((Boolean) state.get(WATERLOGGED)) {
+        if (state.get(WATERLOGGED)) {
             world.createAndScheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
         }
         return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
