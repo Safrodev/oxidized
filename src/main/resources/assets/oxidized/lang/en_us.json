@@ -7,6 +7,7 @@
   "item.oxidized.rose_gold_sword": "Rose Gold Sword",
   "item.oxidized.copper_nugget": "Copper Nugget",
   "item.oxidized.copper_golem_spawn_egg": "Copper Golem Spawn Egg",
+  "item.oxidized.copper_barometer": "Copper Barometer",
 
   "block.oxidized.vertical_cut_copper": "Vertical Cut Copper",
   "block.oxidized.vertical_exposed_cut_copper": "Vertical Exposed Cut Copper",
@@ -26,6 +27,11 @@
   "entity.oxidized.copper_golem": "Copper Golem",
 
   "death.attack.trap": "%s was caught in a trap",
+
+  "text.oxidized.rain": "Rain will end in %s seconds",
+  "text.oxidized.thunderstorm": "Thunderstorm will end in %s seconds",
+  "text.oxidized.snow": "Snow will end in %s seconds",
+  "text.oxidized.clearweather": "Precipitation will fall in %s seconds",
 
   "gui.recipebook.toggleRecipes.kiln": "Showing Kiln Recipes",
   "itemGroup.oxidized.item_group": "Oxidized",

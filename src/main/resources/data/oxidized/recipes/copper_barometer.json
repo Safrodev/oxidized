@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#G#",
+    "#R#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "tag": "c:copper_ingots"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "G": {
+      "item": "minecraft:glass"
+    }
+  },
+  "result": {
+    "item": "oxidized:copper_barometer",
+    "count": 1
+  }
+}

@@ -41,7 +41,7 @@ public class CopperTrapBlock extends Block {
                     world.setBlockState(pos, state.with(CLOSED, true), 3);
                 }
             }
-            world.playSound((PlayerEntity) null, pos, SoundEvents.BLOCK_COPPER_HIT, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            world.playSound(null, pos, SoundEvents.BLOCK_COPPER_HIT, SoundCategory.BLOCKS, 1.0F, 1.0F);
             world.emitGameEvent(player, GameEvent.BLOCK_CHANGE, pos);
             return ActionResult.SUCCESS;
         }
@@ -73,8 +73,8 @@ public class CopperTrapBlock extends Block {
     }
 
     public void schedule(BlockState state, World world, BlockPos pos) {
-        world.setBlockState(pos, (BlockState)state.with(CLOSED, true), 3);
-        world.createAndScheduleBlockTick(pos, this, 60);
+        world.setBlockState(pos, state.with(CLOSED, true), 3);
+        world.scheduleBlockTick(pos, this, 60);
         world.updateNeighborsAlways(pos, this);
     }
 
@@ -86,7 +86,7 @@ public class CopperTrapBlock extends Block {
     }
 
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return (BlockState)this.getDefaultState().with(CLOSED, ctx.getWorld().isReceivingRedstonePower(ctx.getBlockPos()));
+        return this.getDefaultState().with(CLOSED, ctx.getWorld().isReceivingRedstonePower(ctx.getBlockPos()));
     }
 
     public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {

@@ -8,14 +8,16 @@ import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.CookingRecipeSerializer;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 import safro.oxidized.Oxidized;
 import safro.oxidized.block.*;
 import safro.oxidized.block.entity.CopperKilnBlockEntity;
@@ -46,21 +48,24 @@ public class BlockRegistry {
     public static BlockEntityType<CopperKilnBlockEntity> COPPER_KILN_BLOCK_ENTITY;
     public static final ScreenHandlerType<CopperKilnScreenHandler> COPPER_KILN_SCREEN_HANDLER = ScreenHandlerRegistry.registerSimple(new Identifier("oxidized", "copper_kiln_screen_handler"), CopperKilnScreenHandler::new);
     public static final RecipeType<CopperKilnRecipe> COPPER_KILN_RECIPE_TYPE = RecipeType.register("oxidized:kiln_smelting");
-    public static final RecipeSerializer<CopperKilnRecipe> COPPER_KILN_RECIPE_SERIALIZER = Registry.register(Registry.RECIPE_SERIALIZER, new Identifier("oxidized", "kiln_smelting"), new CookingRecipeSerializer<>(CopperKilnRecipe::new, 100));
+    public static final RecipeSerializer<CopperKilnRecipe> COPPER_KILN_RECIPE_SERIALIZER = Registry.register(Registries.RECIPE_SERIALIZER, new Identifier("oxidized", "kiln_smelting"), new CookingRecipeSerializer<>(CopperKilnRecipe::new, 100));
 
     public static final Block COPPER_TRAP = register("copper_trap", new CopperTrapBlock(blockWithStrength(2.0F, 3.0F).noCollision()), true);
 
     private static <T extends Block> T register(String name, T block, boolean createItem) {
         BLOCKS.put(block, new Identifier("oxidized", name));
         if (createItem) {
-            Registry.register(Registry.ITEM, new Identifier("oxidized", name), new BlockItem(block, new FabricItemSettings().group(Oxidized.ITEMGROUP)));
+            Registry.register(Registries.ITEM, new Identifier("oxidized", name), new BlockItem(block, new FabricItemSettings()));
         }
         return block;
     }
 
     public static void init() {
-        BLOCKS.keySet().forEach(block -> Registry.register(Registry.BLOCK, BLOCKS.get(block), block));
-        COPPER_KILN_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, "oxidized:copper_kiln_block_entity", FabricBlockEntityTypeBuilder.create(CopperKilnBlockEntity::new, COPPER_KILN).build(null));
+        BLOCKS.keySet().forEach(block -> {
+            Registry.register(Registries.BLOCK, BLOCKS.get(block), block);
+            Oxidized.ITEMS.add(new ItemStack(block));
+        });
+        COPPER_KILN_BLOCK_ENTITY = Registry.register(Registries.BLOCK_ENTITY_TYPE, "oxidized:copper_kiln_block_entity", FabricBlockEntityTypeBuilder.create(CopperKilnBlockEntity::new, COPPER_KILN).build(null));
 
         initOxidizables();
     }

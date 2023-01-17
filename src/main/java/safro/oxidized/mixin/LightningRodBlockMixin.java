@@ -12,6 +12,7 @@ import net.minecraft.predicate.block.BlockStatePredicate;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -21,7 +22,6 @@ import safro.oxidized.Oxidized;
 import safro.oxidized.entity.CopperGolemEntity;
 import safro.oxidized.registry.EntityRegistry;
 
-import javax.annotation.Nullable;
 import java.util.Iterator;
 
 @Mixin(LightningRodBlock.class)

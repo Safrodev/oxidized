@@ -1,7 +1,8 @@
 package safro.oxidized;
 
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
+import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -14,10 +15,11 @@ import safro.oxidized.registry.EntityRegistry;
 import safro.oxidized.registry.ItemRegistry;
 
 import java.io.File;
+import java.util.ArrayList;
 
 public class Oxidized implements ModInitializer {
-
-	public static ItemGroup ITEMGROUP = FabricItemGroupBuilder.build(new Identifier("oxidized", "item_group"), () -> new ItemStack(BlockRegistry.COPPER_KILN));
+	public static final ArrayList<ItemStack> ITEMS = new ArrayList<>();
+	public static ItemGroup ITEMGROUP = FabricItemGroup.builder(new Identifier("oxidized", "item_group")).icon(() -> new ItemStack(BlockRegistry.COPPER_KILN)).build();
 	public static final Logger LOGGER = LogManager.getLogger("oxidized");
 	public static OxidizedConfig CONFIG;
 
@@ -28,5 +30,7 @@ public class Oxidized implements ModInitializer {
 		BlockRegistry.init();
 		ItemRegistry.init();
 		EntityRegistry.init();
+
+		ItemGroupEvents.modifyEntriesEvent(ITEMGROUP).register(entries -> entries.addAll(ITEMS));
 	}
 }
