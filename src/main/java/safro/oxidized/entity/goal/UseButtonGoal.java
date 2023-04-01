@@ -114,7 +114,7 @@ public class UseButtonGoal extends MoveToTargetPosGoal {
             return false;
     }
 
-    public double getDesiredSquaredDistanceToTarget() {
+    public double getDesiredDistanceToTarget() {
         return 0.75D;
     }
 }

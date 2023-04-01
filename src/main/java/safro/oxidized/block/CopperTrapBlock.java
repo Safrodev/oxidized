@@ -55,7 +55,7 @@ public class CopperTrapBlock extends Block {
                     double d = Math.abs(entity.getX() - entity.lastRenderX);
                     double e = Math.abs(entity.getZ() - entity.lastRenderZ);
                     if (d >= 0.003000000026077032D || e >= 0.003000000026077032D) {
-                        entity.damage(new TrapDamageSource(), 5.0F);
+                        entity.damage(TrapDamageSource.create(world), 5.0F);
                     }
                     this.schedule(state, world, pos);
                 }
