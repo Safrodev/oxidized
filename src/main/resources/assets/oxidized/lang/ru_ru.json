@@ -30,7 +30,7 @@
   
   "text.oxidized.rain": "Через %s секунд кончится дождь",
   "text.oxidized.thunderstorm": "Через %s секунд кончится гроза",
-  "text.oxidized.snow": "Через %s кончится снегопад",
+  "text.oxidized.snow": "Через %s секунд кончится снегопад",
   "text.oxidized.clearweather": "Через %s секунд выпадут осадки",
 
   "gui.recipebook.toggleRecipes.kiln": "Показ рецептов для сушильни",
