@@ -7,6 +7,7 @@
   "item.oxidized.rose_gold_sword": "Меч из розового золота",
   "item.oxidized.copper_nugget": "Кусочек меди",
   "item.oxidized.copper_golem_spawn_egg": "Яйцо призыва медного голема",
+  "item.oxidized.copper_barometer": "Медный барометр",
 
   "block.oxidized.vertical_cut_copper": "Вертикальная резная медь",
   "block.oxidized.vertical_exposed_cut_copper": "Потемневшая вертикальная резная медь",
@@ -25,7 +26,12 @@
 
   "entity.oxidized.copper_golem": "Медный голем",
 
-  "death.attack.trap": "%s попал в капкан.",
+  "death.attack.trap": "%s угодил в капкан",
+  
+  "text.oxidized.rain": "Через %s секунд кончится дождь",
+  "text.oxidized.thunderstorm": "Через %s секунд кончится гроза",
+  "text.oxidized.snow": "Через %s секунд кончится снегопад",
+  "text.oxidized.clearweather": "Через %s секунд выпадут осадки",
 
   "gui.recipebook.toggleRecipes.kiln": "Показ рецептов для сушильни",
   "itemGroup.oxidized.item_group": "Oxidized",
