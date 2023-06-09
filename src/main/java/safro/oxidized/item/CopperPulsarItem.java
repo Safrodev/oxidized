@@ -38,7 +38,7 @@ public class CopperPulsarItem extends Item {
                 item.onPlayerCollision(player);
             }
 
-            List<ExperienceOrbEntity> entityXP = player.world.getEntitiesByClass(ExperienceOrbEntity.class, player.getBoundingBox().expand(Oxidized.CONFIG.pulsar_reach), EntityPredicates.VALID_ENTITY);
+            List<ExperienceOrbEntity> entityXP = player.world.getEntitiesByClass(ExperienceOrbEntity.class, box, EntityPredicates.VALID_ENTITY);
             for (ExperienceOrbEntity xp : entityXP) {
                 xp.onPlayerCollision(player);
             }
