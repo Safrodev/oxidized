@@ -162,6 +162,8 @@ public class CopperRailBlock extends AbstractRailBlock {
         return SHAPE;
     }
 
+    @SuppressWarnings("deprecation")
+    // Overriding is not deprecated (see https://maven.fabricmc.net/docs/yarn-1.20.1+build.1/net/minecraft/block/AbstractBlock.html#deprecated-methods)
     public BlockState rotate(BlockState state, BlockRotation rotation) {
         switch(rotation) {
             case CLOCKWISE_180:
@@ -234,6 +236,8 @@ public class CopperRailBlock extends AbstractRailBlock {
         }
     }
 
+    @SuppressWarnings("deprecation")
+    // Overriding is not deprecated (see https://maven.fabricmc.net/docs/yarn-1.20.1+build.1/net/minecraft/block/AbstractBlock.html#deprecated-methods)
     public BlockState mirror(BlockState state, BlockMirror mirror) {
         RailShape railShape = (RailShape)state.get(SHAPE);
         switch(mirror) {

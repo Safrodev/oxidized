@@ -35,6 +35,8 @@ public class CopperPanBlock extends Block implements Waterloggable {
         this.setDefaultState(this.stateManager.getDefaultState().with(PANNED, 0).with(WATERLOGGED, false));
     }
 
+    @SuppressWarnings("deprecation")
+    // Overriding is not deprecated (see https://maven.fabricmc.net/docs/yarn-1.20.1+build.1/net/minecraft/block/AbstractBlock.html#deprecated-methods)
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         int i = state.get(PANNED);
@@ -78,6 +80,8 @@ public class CopperPanBlock extends Block implements Waterloggable {
         return world.getBlockState(pos).isIn(BlockTags.SAND) || world.getBlockState(pos).isOf(Blocks.GRAVEL);
     }
 
+    @SuppressWarnings("deprecation")
+    // Overriding is not deprecated (see https://maven.fabricmc.net/docs/yarn-1.20.1+build.1/net/minecraft/block/AbstractBlock.html#deprecated-methods)
     public FluidState getFluidState(BlockState state) {
         return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
     }
@@ -87,6 +91,8 @@ public class CopperPanBlock extends Block implements Waterloggable {
         return this.getDefaultState().with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
     }
 
+    @SuppressWarnings("deprecation")
+    // Overriding is not deprecated (see https://maven.fabricmc.net/docs/yarn-1.20.1+build.1/net/minecraft/block/AbstractBlock.html#deprecated-methods)
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
         if (state.get(WATERLOGGED)) {
@@ -95,11 +101,15 @@ public class CopperPanBlock extends Block implements Waterloggable {
         return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
     }
 
+    @SuppressWarnings("deprecation")
+    // Overriding is not deprecated (see https://maven.fabricmc.net/docs/yarn-1.20.1+build.1/net/minecraft/block/AbstractBlock.html#deprecated-methods)
     @Override
     public BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;
     }
 
+    @SuppressWarnings("deprecation")
+    // Overriding is not deprecated (see https://maven.fabricmc.net/docs/yarn-1.20.1+build.1/net/minecraft/block/AbstractBlock.html#deprecated-methods)
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return SHAPE;
     }

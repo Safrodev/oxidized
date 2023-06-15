@@ -41,8 +41,8 @@ public class UseButtonGoal extends MoveToTargetPosGoal {
         //    if (this.hasButton(targetPos) && button != null && buttonPos != null) {
                 this.golem.setPressingButtons(true);
                 if (MathHelper.nextInt(golem.getRandom(), 1, Oxidized.CONFIG.copper_golem_button_chance) == 2) {
-                    BlockState state = this.golem.world.getBlockState(this.targetPos);
-                    ((CopperButtonBlock) state.getBlock()).onUse(state, this.mob.world, this.targetPos, null, null, null);
+                    BlockState state = this.golem.getWorld().getBlockState(this.targetPos);
+                    ((CopperButtonBlock) state.getBlock()).onUse(state, this.mob.getWorld(), this.targetPos, null, null, null);
                 }
         //    }
         }
@@ -59,7 +59,7 @@ public class UseButtonGoal extends MoveToTargetPosGoal {
     }
 
     private BlockPos getStandablePos(BlockPos pos) {
-        World world = this.golem.world;
+        World world = this.golem.getWorld();
         if (isStandable(world, pos.west())) {
             return pos.west();
         } else if (isStandable(world, pos.north())) {
@@ -80,32 +80,32 @@ public class UseButtonGoal extends MoveToTargetPosGoal {
     }
 
     private boolean hasButton(BlockPos pos) {
-        if (this.golem.world.getBlockState(pos).isOf(BlockRegistry.COPPER_BUTTON)) {
-            button = this.golem.world.getBlockState(pos);
+        if (this.golem.getWorld().getBlockState(pos).isOf(BlockRegistry.COPPER_BUTTON)) {
+            button = this.golem.getWorld().getBlockState(pos);
             buttonPos = pos;
             return true;
-        } else if (this.golem.world.getBlockState(pos.down()).isOf(BlockRegistry.COPPER_BUTTON)) {
-            button = this.golem.world.getBlockState(pos.down());
+        } else if (this.golem.getWorld().getBlockState(pos.down()).isOf(BlockRegistry.COPPER_BUTTON)) {
+            button = this.golem.getWorld().getBlockState(pos.down());
             buttonPos = pos.down();
             return true;
-        } else if (this.golem.world.getBlockState(pos.up()).isOf(BlockRegistry.COPPER_BUTTON)) {
-            button = this.golem.world.getBlockState(pos.up());
+        } else if (this.golem.getWorld().getBlockState(pos.up()).isOf(BlockRegistry.COPPER_BUTTON)) {
+            button = this.golem.getWorld().getBlockState(pos.up());
             buttonPos = pos.up();
             return true;
-        } else if (this.golem.world.getBlockState(pos.east()).isOf(BlockRegistry.COPPER_BUTTON)) {
-            button = this.golem.world.getBlockState(pos.east());
+        } else if (this.golem.getWorld().getBlockState(pos.east()).isOf(BlockRegistry.COPPER_BUTTON)) {
+            button = this.golem.getWorld().getBlockState(pos.east());
             buttonPos = pos.east();
             return true;
-        } else if (this.golem.world.getBlockState(pos.west()).isOf(BlockRegistry.COPPER_BUTTON)) {
-            button = this.golem.world.getBlockState(pos.west());
+        } else if (this.golem.getWorld().getBlockState(pos.west()).isOf(BlockRegistry.COPPER_BUTTON)) {
+            button = this.golem.getWorld().getBlockState(pos.west());
             buttonPos = pos.west();
             return true;
-        } else if (this.golem.world.getBlockState(pos.north()).isOf(BlockRegistry.COPPER_BUTTON)) {
-            button = this.golem.world.getBlockState(pos.north());
+        } else if (this.golem.getWorld().getBlockState(pos.north()).isOf(BlockRegistry.COPPER_BUTTON)) {
+            button = this.golem.getWorld().getBlockState(pos.north());
             buttonPos = pos.north();
             return true;
-        } else if (this.golem.world.getBlockState(pos.south()).isOf(BlockRegistry.COPPER_BUTTON)) {
-            button = this.golem.world.getBlockState(pos.south());
+        } else if (this.golem.getWorld().getBlockState(pos.south()).isOf(BlockRegistry.COPPER_BUTTON)) {
+            button = this.golem.getWorld().getBlockState(pos.south());
             buttonPos = pos.south();
             return true;
         } else
