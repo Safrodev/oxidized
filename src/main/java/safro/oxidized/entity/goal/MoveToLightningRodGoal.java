@@ -16,7 +16,7 @@ public class MoveToLightningRodGoal extends MoveToTargetPosGoal {
     }
 
     public boolean canStart() {
-        return this.golem.world.isThundering() && super.canStart();
+        return this.golem.getWorld().isThundering() && super.canStart();
     }
 
     protected boolean isTargetPos(WorldView world, BlockPos pos) {

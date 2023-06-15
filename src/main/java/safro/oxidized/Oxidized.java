@@ -6,6 +6,10 @@ import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,7 +23,7 @@ import java.util.ArrayList;
 
 public class Oxidized implements ModInitializer {
 	public static final ArrayList<ItemStack> ITEMS = new ArrayList<>();
-	public static ItemGroup ITEMGROUP = FabricItemGroup.builder(new Identifier("oxidized", "item_group")).icon(() -> new ItemStack(BlockRegistry.COPPER_KILN)).build();
+	public static RegistryKey<ItemGroup> ITEMGROUP = RegistryKey.of(RegistryKeys.ITEM_GROUP, new Identifier("oxidized", "item_group"));
 	public static final Logger LOGGER = LogManager.getLogger("oxidized");
 	public static OxidizedConfig CONFIG;
 

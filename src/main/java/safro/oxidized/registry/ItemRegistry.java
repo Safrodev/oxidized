@@ -1,9 +1,10 @@
 package safro.oxidized.registry;
 
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import safro.oxidized.Oxidized;
 import safro.oxidized.item.BarometerItem;
@@ -16,6 +17,10 @@ import safro.oxidized.item.rosegold.RoseGoldMaterial;
 public class ItemRegistry {
 
     public static void init() {
+        Registry.register(Registries.ITEM_GROUP, Oxidized.ITEMGROUP, FabricItemGroup.builder()
+                .icon(() -> new ItemStack(BlockRegistry.COPPER_KILN))
+                .displayName(Text.translatable("itemGroup.oxidized.item_group")).build());
+
         // With the way registries changed in 1.18.2, this is the best (as of now) way to register configurable items
         if (Oxidized.CONFIG.enable_copper_pulsar) {
             register("copper_pulsar", new CopperPulsarItem(basic()));

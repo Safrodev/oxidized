@@ -30,12 +30,12 @@ public class BasicHoeItem extends MiningToolItem {
     public ActionResult useOnBlock(ItemUsageContext context) {
         World world = context.getWorld();
         BlockPos blockPos = context.getBlockPos();
-        Pair<Predicate<ItemUsageContext>, Consumer<ItemUsageContext>> pair = (Pair)TILLING_ACTIONS.get(world.getBlockState(blockPos).getBlock());
+        Pair<Predicate<ItemUsageContext>, Consumer<ItemUsageContext>> pair = (Pair<Predicate<ItemUsageContext>, Consumer<ItemUsageContext>>)TILLING_ACTIONS.get(world.getBlockState(blockPos).getBlock());
         if (pair == null) {
             return ActionResult.PASS;
         } else {
-            Predicate<ItemUsageContext> predicate = (Predicate)pair.getFirst();
-            Consumer<ItemUsageContext> consumer = (Consumer)pair.getSecond();
+            Predicate<ItemUsageContext> predicate = (Predicate<ItemUsageContext>)pair.getFirst();
+            Consumer<ItemUsageContext> consumer = (Consumer<ItemUsageContext>)pair.getSecond();
             if (predicate.test(context)) {
                 PlayerEntity playerEntity = context.getPlayer();
                 world.playSound(playerEntity, blockPos, SoundEvents.ITEM_HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);

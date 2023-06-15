@@ -95,6 +95,7 @@ public class CopperGolemEntity extends GolemEntity {
     }
 
     protected ActionResult interactMob(PlayerEntity player, Hand hand) {
+        World world = player.getWorld();
         ItemStack stack = player.getStackInHand(hand);
         if (stack.getItem() instanceof AxeItem && this.oxidizationLevel != Oxidizable.OxidationLevel.UNAFFECTED) {
             this.degradeLevel();
