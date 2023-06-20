@@ -28,7 +28,7 @@
   "death.attack.trap": "%s 止步于一处陷阱",
 
   "gui.recipebook.toggleRecipes.kiln": "显示铜窑配方",
-  "itemGroup.oxidized.item_group": "Oxidized",
+  "itemGroup.oxidized.oxidized": "Oxidized",
   "container.oxidized.copper_kiln": "铜窑",
   "category.oxidized.kiln_smelting": "铜窑烧炼"
 }

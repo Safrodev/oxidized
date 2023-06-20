@@ -32,9 +32,14 @@
   "text.oxidized.thunderstorm": "Thunderstorm will end in %s seconds",
   "text.oxidized.snow": "Snow will end in %s seconds",
   "text.oxidized.clearweather": "Precipitation will fall in %s seconds",
+  "text.oxidized.rose_gold_template": "Rose Gold Upgrade",
+  "text.oxidized.rose_gold_template_applies": "Golden Equipment",
+  "text.oxidized.rose_gold_template_ingredient": "Copper Ingot",
+  "text.oxidized.rose_gold_template.base_desc": "Add golden tool",
+  "text.oxidized.rose_gold_template.ing_desc": "Add copper ingot",
 
   "gui.recipebook.toggleRecipes.kiln": "Showing Kiln Recipes",
-  "itemGroup.oxidized.item_group": "Oxidized",
+  "itemGroup.oxidized.oxidized": "Oxidized",
   "container.oxidized.copper_kiln": "Copper Kiln",
   "category.oxidized.kiln_smelting": "Copper Kiln Smelting"
 }

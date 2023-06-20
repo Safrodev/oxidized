@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '1.1-SNAPSHOT'
+	id 'fabric-loom' version '1.2-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -14,6 +14,17 @@ repositories {
 	maven { url 'https://jitpack.io' }
 	maven { url "https://maven.shedaniel.me" }
 	maven { url "https://maven.terraformersmc.com" }
+
+	exclusiveContent {
+		forRepository {
+			maven {
+				url = "https://api.modrinth.com/maven"
+			}
+		}
+		filter {
+			includeGroup "maven.modrinth"
+		}
+	}
 }
 
 loom {
@@ -35,6 +46,9 @@ dependencies {
 	modCompileOnly modRuntimeOnly("com.terraformersmc:modmenu:${project.modmenu_version}"), {
 		exclude(group: "net.fabricmc.fabric-api")
 	}
+
+	// SafLib
+	modImplementation include("maven.modrinth:saflib:${project.lib_version}")
 }
 
 processResources {

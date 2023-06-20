@@ -22,6 +22,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 import safro.oxidized.util.TrapDamageSource;
+import safro.saflib.util.DamageSourceUtil;
 
 public class CopperTrapBlock extends Block {
     public static final BooleanProperty CLOSED;
@@ -32,8 +33,6 @@ public class CopperTrapBlock extends Block {
         this.setDefaultState(this.stateManager.getDefaultState().with(CLOSED, false));
     }
 
-    @SuppressWarnings("deprecation")
-    // Overriding is not deprecated (see https://maven.fabricmc.net/docs/yarn-1.20.1+build.1/net/minecraft/block/AbstractBlock.html#deprecated-methods)
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (player.getStackInHand(hand).isEmpty()) {
             if (!world.isClient) {
@@ -50,8 +49,6 @@ public class CopperTrapBlock extends Block {
         return ActionResult.PASS;
     }
 
-    @SuppressWarnings("deprecation")
-    // Overriding is not deprecated (see https://maven.fabricmc.net/docs/yarn-1.20.1+build.1/net/minecraft/block/AbstractBlock.html#deprecated-methods)
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         if (entity instanceof LivingEntity && !entity.canAvoidTraps()) {
             if (!state.get(CLOSED)) {
@@ -59,7 +56,7 @@ public class CopperTrapBlock extends Block {
                     double d = Math.abs(entity.getX() - entity.lastRenderX);
                     double e = Math.abs(entity.getZ() - entity.lastRenderZ);
                     if (d >= 0.003000000026077032D || e >= 0.003000000026077032D) {
-                        entity.damage(TrapDamageSource.create(world), 5.0F);
+                        entity.damage(DamageSourceUtil.create(world, TrapDamageSource.TRAP), 5.0F);
                     }
                     this.schedule(state, world, pos);
                 }
@@ -72,8 +69,6 @@ public class CopperTrapBlock extends Block {
         super.appendProperties(builder);
     }
 
-    @SuppressWarnings("deprecation")
-    // Overriding is not deprecated (see https://maven.fabricmc.net/docs/yarn-1.20.1+build.1/net/minecraft/block/AbstractBlock.html#deprecated-methods)
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return SHAPE;
     }
@@ -84,8 +79,6 @@ public class CopperTrapBlock extends Block {
         world.updateNeighborsAlways(pos, this);
     }
 
-    @SuppressWarnings("deprecation")
-    // Overriding is not deprecated (see https://maven.fabricmc.net/docs/yarn-1.20.1+build.1/net/minecraft/block/AbstractBlock.html#deprecated-methods)
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         if (state.get(CLOSED)) {
             world.setBlockState(pos, state.with(CLOSED, false));
@@ -97,8 +90,6 @@ public class CopperTrapBlock extends Block {
         return this.getDefaultState().with(CLOSED, ctx.getWorld().isReceivingRedstonePower(ctx.getBlockPos()));
     }
 
-    @SuppressWarnings("deprecation")
-    // Overriding is not deprecated (see https://maven.fabricmc.net/docs/yarn-1.20.1+build.1/net/minecraft/block/AbstractBlock.html#deprecated-methods)
     public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
         if (!world.isClient) {
             world.setBlockState(pos, state.with(CLOSED, world.isReceivingRedstonePower(pos)));

@@ -1,6 +1,6 @@
 # Oxidized
 
-Oxidized is a Minecraft Mod for the Fabric modloader. It adds new items, blocks, and entities revolving around copper. 
+Oxidized is a Minecraft mod for the Fabric mod loader that aims to provide more uses for vanilla copper. 
 
 ## Links
 * [Curseforge](https://www.curseforge.com/minecraft/mc-mods/oxidized)
