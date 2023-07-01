@@ -7,6 +7,7 @@
   "item.oxidized.rose_gold_sword": "玫瑰金剑",
   "item.oxidized.copper_nugget": "铜粒",
   "item.oxidized.copper_golem_spawn_egg": "铜傀儡刷怪蛋",
+  "item.oxidized.copper_barometer": "铜制气压计",
 
   "block.oxidized.vertical_cut_copper": "竖纹切制铜块",
   "block.oxidized.vertical_exposed_cut_copper": "斑驳的竖纹切制铜块",
@@ -26,6 +27,16 @@
   "entity.oxidized.copper_golem": "铜傀儡",
 
   "death.attack.trap": "%s 止步于一处陷阱",
+
+  "text.oxidized.rain": "降雨将在 %s 秒内结束",
+  "text.oxidized.thunderstorm": "雷暴将在 %s 秒内结束",
+  "text.oxidized.snow": "降雪将在 %s 秒内结束",
+  "text.oxidized.clearweather": "降水将在 %s 秒内开始",
+  "text.oxidized.rose_gold_template": "玫瑰金升级",
+  "text.oxidized.rose_gold_template_applies": "黄金设备",
+  "text.oxidized.rose_gold_template_ingredient": "铜锭",
+  "text.oxidized.rose_gold_template.base_desc": "添加黄金工具",
+  "text.oxidized.rose_gold_template.ing_desc": "添加铜锭",
 
   "gui.recipebook.toggleRecipes.kiln": "显示铜窑配方",
   "itemGroup.oxidized.oxidized": "Oxidized",
