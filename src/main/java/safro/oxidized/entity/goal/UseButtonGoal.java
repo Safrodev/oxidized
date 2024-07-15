@@ -1,11 +1,13 @@
 package safro.oxidized.entity.goal;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.block.ButtonBlock;
 import net.minecraft.entity.ai.goal.MoveToTargetPosGoal;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
+import net.minecraft.world.event.GameEvent;
 import safro.oxidized.Oxidized;
 import safro.oxidized.block.CopperButtonBlock;
 import safro.oxidized.entity.CopperGolemEntity;
@@ -21,14 +23,17 @@ public class UseButtonGoal extends MoveToTargetPosGoal {
         this.golem = entity;
     }
 
+    @Override
     public boolean canStart() {
         return super.canStart();
     }
 
+    @Override
     public void start() {
         super.start();
     }
 
+    @Override
     public void stop() {
         super.stop();
         this.golem.setPressingButtons(false);
@@ -42,18 +47,22 @@ public class UseButtonGoal extends MoveToTargetPosGoal {
                 this.golem.setPressingButtons(true);
                 if (MathHelper.nextInt(golem.getRandom(), 1, Oxidized.CONFIG.copper_golem_button_chance) == 2) {
                     BlockState state = this.golem.getWorld().getBlockState(this.targetPos);
-                    ((CopperButtonBlock) state.getBlock()).onUse(state, this.mob.getWorld(), this.targetPos, null, null, null);
+                    if (!state.get(ButtonBlock.POWERED)) {
+                        ((CopperButtonBlock)state.getBlock()).powerOn(state, this.golem.getWorld(), this.targetPos, null);
+                    }
                 }
         //    }
         }
         super.tick();
     }
 
+    @Override
     protected boolean isTargetPos(WorldView world, BlockPos pos) {
         BlockState state = world.getBlockState(pos);
         return state.isOf(BlockRegistry.COPPER_BUTTON);
     }
 
+    @Override
     protected BlockPos getTargetPos() {
         return this.targetPos;
     }
@@ -114,6 +123,7 @@ public class UseButtonGoal extends MoveToTargetPosGoal {
             return false;
     }
 
+    @Override
     public double getDesiredDistanceToTarget() {
         return 0.75D;
     }

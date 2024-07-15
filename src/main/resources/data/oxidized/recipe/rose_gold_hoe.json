@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "base": {
+    "item": "minecraft:golden_hoe"
+  },
+  "addition": {
+    "item": "minecraft:copper_ingot"
+  },
+  "result": {
+    "count": 1,
+    "id": "oxidized:rose_gold_hoe"
+  },
+  "template": {
+    "item": "oxidized:rose_gold_upgrade_template"
+  }
+}

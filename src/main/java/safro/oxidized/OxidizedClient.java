@@ -15,7 +15,7 @@ import safro.oxidized.registry.BlockRegistry;
 import safro.oxidized.registry.EntityRegistry;
 
 public class OxidizedClient implements ClientModInitializer {
-    public static final EntityModelLayer COPPER_GOLEM_LAYER = new EntityModelLayer(new Identifier("oxidized", "copper_golem_layer"), "copper_golem_layer");
+    public static final EntityModelLayer COPPER_GOLEM_LAYER = new EntityModelLayer(Identifier.of("oxidized", "copper_golem_layer"), "copper_golem_layer");
 
     @Override
     public void onInitializeClient() {

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#F#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "tag": "c:ingots/copper"
+    },
+    "F": {
+      "item": "minecraft:furnace"
+    }
+  },
+  "result": {
+    "id": "oxidized:copper_kiln",
+    "count": 1
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "R R",
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "tag": "c:ingots/copper"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "result": {
+    "id": "oxidized:copper_pulsar",
+    "count": 1
+  }
+}

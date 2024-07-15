@@ -1,5 +1,6 @@
 package safro.oxidized.block;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -19,20 +20,29 @@ import safro.oxidized.block.entity.CopperKilnBlockEntity;
 import safro.oxidized.registry.BlockRegistry;
 
 public class CopperKilnBlock extends AbstractFurnaceBlock {
+    public static final MapCodec<CopperKilnBlock> CODEC = createCodec(CopperKilnBlock::new);
 
     public CopperKilnBlock(Settings settings) {
         super(settings);
     }
 
+    @Override
+    protected MapCodec<? extends CopperKilnBlock> getCodec() {
+        return CODEC;
+    }
+
+    @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
         return new CopperKilnBlockEntity(pos, state);
     }
 
     @Nullable
+    @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(world, type, BlockRegistry.COPPER_KILN_BLOCK_ENTITY);
+        return validateTicker(world, type, BlockRegistry.COPPER_KILN_BLOCK_ENTITY);
     }
 
+    @Override
     public void openScreen(World world, BlockPos pos, PlayerEntity player) {
         BlockEntity blockEntity = world.getBlockEntity(pos);
         if (blockEntity instanceof CopperKilnBlockEntity) {
@@ -42,6 +52,7 @@ public class CopperKilnBlock extends AbstractFurnaceBlock {
 
     }
 
+    @Override
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
         if (state.get(LIT)) {
             double d = (double)pos.getX() + 0.5D;

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X X",
+    "XSX",
+    "XRX"
+  ],
+  "key": {
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "X": {
+      "tag": "c:ingots/copper"
+    }
+  },
+  "result": {
+    "id": "oxidized:copper_rail",
+    "count": 6
+  }
+}

@@ -18,7 +18,6 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class Oxidized implements ModInitializer {
-	public static final ArrayList<ItemStack> ITEMS = new ArrayList<>();
 	public static RegistryKey<ItemGroup> ITEMGROUP = SafLib.createGroup("oxidized");
 	public static final Logger LOGGER = LogManager.getLogger("oxidized");
 	public static OxidizedConfig CONFIG;

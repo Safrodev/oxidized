@@ -1,9 +1,0 @@
-{
-  "type": "oxidized:kiln_smelting",
-  "ingredient": {
-    "tag": "minecraft:smelts_to_glass"
-  },
-  "result": "minecraft:glass",
-  "experience": 0.1,
-  "cookingtime": 100
-}
