@@ -7,10 +7,7 @@ import net.minecraft.util.Identifier;
 import safro.oxidized.Oxidized;
 import safro.oxidized.item.BarometerItem;
 import safro.oxidized.item.CopperPulsarItem;
-import safro.oxidized.item.rosegold.BasicAxeItem;
-import safro.oxidized.item.rosegold.BasicHoeItem;
-import safro.oxidized.item.rosegold.BasicPickaxeItem;
-import safro.oxidized.item.rosegold.RoseGoldMaterial;
+import safro.oxidized.item.RoseGoldMaterial;
 import safro.saflib.registry.BaseBlockItemRegistry;
 
 import java.util.List;
@@ -19,7 +16,6 @@ public class ItemRegistry extends BaseBlockItemRegistry {
     static { MODID = "oxidized"; }
 
     public static void init() {
-        // With the way registries changed in 1.18.2, this is the best way to register configurable items
         if (Oxidized.CONFIG.enable_copper_pulsar) {
             register("copper_pulsar", new CopperPulsarItem(settings()));
         }
@@ -29,11 +25,11 @@ public class ItemRegistry extends BaseBlockItemRegistry {
 
         if (Oxidized.CONFIG.enable_rose_gold_tools) {
             register("rose_gold_upgrade_template", createRoseGoldTemplate());
-            register("rose_gold_axe", new BasicAxeItem(RoseGoldMaterial.ROSE_GOLD, 6.0F, -3.0F, settings()));
-            register("rose_gold_hoe", new BasicHoeItem(RoseGoldMaterial.ROSE_GOLD, 0, -3.0F, settings()));
-            register("rose_gold_pickaxe", new BasicPickaxeItem(RoseGoldMaterial.ROSE_GOLD, 1, -2.8F, settings()));
-            register("rose_gold_shovel", new ShovelItem(RoseGoldMaterial.ROSE_GOLD, 1.5F, -3.0F, settings()));
-            register("rose_gold_sword", new SwordItem(RoseGoldMaterial.ROSE_GOLD, 4, -2.4F, settings()));
+            register("rose_gold_axe", new AxeItem(RoseGoldMaterial.ROSE_GOLD, settings().attributeModifiers(AxeItem.createAttributeModifiers(RoseGoldMaterial.ROSE_GOLD, 6.0F, -3.0F))));
+            register("rose_gold_hoe", new HoeItem(RoseGoldMaterial.ROSE_GOLD, settings().attributeModifiers(HoeItem.createAttributeModifiers(RoseGoldMaterial.ROSE_GOLD, 0, -3.0F))));
+            register("rose_gold_pickaxe", new PickaxeItem(RoseGoldMaterial.ROSE_GOLD, settings().attributeModifiers(PickaxeItem.createAttributeModifiers(RoseGoldMaterial.ROSE_GOLD, 1, -2.8F))));
+            register("rose_gold_shovel", new ShovelItem(RoseGoldMaterial.ROSE_GOLD, settings().attributeModifiers(ShovelItem.createAttributeModifiers(RoseGoldMaterial.ROSE_GOLD, 1.5F, -3.0F))));
+            register("rose_gold_sword", new SwordItem(RoseGoldMaterial.ROSE_GOLD, settings().attributeModifiers(SwordItem.createAttributeModifiers(RoseGoldMaterial.ROSE_GOLD, 4, -2.4F))));
         }
 
         if (Oxidized.CONFIG.enable_copper_golem) {
@@ -41,13 +37,12 @@ public class ItemRegistry extends BaseBlockItemRegistry {
         }
     }
 
-    // ...
     private static SmithingTemplateItem createRoseGoldTemplate() {
         return new SmithingTemplateItem(Text.translatable("text.oxidized.rose_gold_template_applies").formatted(Formatting.BLUE),
                 Text.translatable("text.oxidized.rose_gold_template_ingredient").formatted(Formatting.BLUE),
                 Text.translatable("text.oxidized.rose_gold_template").formatted(Formatting.GRAY),
                 Text.translatable("text.oxidized.rose_gold_template.base_desc"),
                 Text.translatable("text.oxidized.rose_gold_template.ing_desc"),
-                List.of(new Identifier("item/empty_slot_ingot")), List.of(new Identifier("item/empty_slot_hoe"), new Identifier("item/empty_slot_axe"), new Identifier("item/empty_slot_sword"), new Identifier("item/empty_slot_shovel"), new Identifier("item/empty_slot_pickaxe")));
+                List.of(Identifier.of("item/empty_slot_ingot")), List.of(Identifier.of("item/empty_slot_hoe"), Identifier.of("item/empty_slot_axe"), Identifier.of("item/empty_slot_sword"), Identifier.of("item/empty_slot_shovel"), Identifier.of("item/empty_slot_pickaxe")));
     }
 }

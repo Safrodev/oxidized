@@ -23,7 +23,7 @@ public class OxidizedREIPlugin implements REIClientPlugin {
     public void registerCategories(CategoryRegistry registry) {
         registry.add(new DefaultCookingCategory(KILN_SMELTING, EntryStacks.of(BlockRegistry.COPPER_KILN), "category.oxidized.kiln_smelting"));
         registry.addWorkstations(KILN_SMELTING, EntryStacks.of(BlockRegistry.COPPER_KILN));
-        registry.addWorkstations(CategoryIdentifier.of(new Identifier("minecraft", "plugins/fuel")), EntryStack.of(VanillaEntryTypes.ITEM, new ItemStack(BlockRegistry.COPPER_KILN)));
+        registry.addWorkstations(CategoryIdentifier.of(Identifier.of("minecraft", "plugins/fuel")), EntryStack.of(VanillaEntryTypes.ITEM, new ItemStack(BlockRegistry.COPPER_KILN)));
     }
 
     @Override

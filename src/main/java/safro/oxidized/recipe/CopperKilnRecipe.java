@@ -10,8 +10,8 @@ import safro.oxidized.registry.BlockRegistry;
 
 public class CopperKilnRecipe extends AbstractCookingRecipe {
 
-    public CopperKilnRecipe(Identifier id, String group, CookingRecipeCategory category, Ingredient input, ItemStack output, float experience, int cookTime) {
-        super(BlockRegistry.COPPER_KILN_RECIPE_TYPE, id, group, category,  input, output, experience, cookTime);
+    public CopperKilnRecipe(String group, CookingRecipeCategory category, Ingredient input, ItemStack output, float experience, int cookTime) {
+        super(BlockRegistry.COPPER_KILN_RECIPE_TYPE, group, category,  input, output, experience, cookTime);
     }
 
     public ItemStack createIcon() {

@@ -11,11 +11,11 @@ import net.minecraft.util.Identifier;
 import safro.oxidized.entity.CopperGolemEntity;
 
 public class EntityRegistry {
-    public static final EntityType<CopperGolemEntity> COPPER_GOLEM = FabricEntityTypeBuilder.<CopperGolemEntity>create(SpawnGroup.MISC, CopperGolemEntity::new)
-            .dimensions(EntityDimensions.fixed(0.5F, 0.9F)).fireImmune().trackRangeBlocks(8).build();
+    public static final EntityType<CopperGolemEntity> COPPER_GOLEM = EntityType.Builder.create(CopperGolemEntity::new, SpawnGroup.MISC)
+            .dimensions(0.5F, 0.9F).makeFireImmune().maxTrackingRange(10).build();
 
     public static void init() {
-        Registry.register(Registries.ENTITY_TYPE, new Identifier("oxidized", "copper_golem"), COPPER_GOLEM);
+        Registry.register(Registries.ENTITY_TYPE, Identifier.of("oxidized", "copper_golem"), COPPER_GOLEM);
 
         // Attributes
         FabricDefaultAttributeRegistry.register(COPPER_GOLEM, CopperGolemEntity.createCopperGolemAttributes());

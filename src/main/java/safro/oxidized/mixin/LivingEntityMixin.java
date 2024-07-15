@@ -17,7 +17,7 @@ public class LivingEntityMixin {
         if (entity.getBlockStateAtPos().isOf(BlockRegistry.COPPER_TRAP)) {
             if (CopperTrapBlock.isClosed(entity.getBlockStateAtPos())) {
                 Vec3d v = entity.getPos();
-                entity.teleport(v.getX(), v.getY(), v.getZ());
+                entity.teleport(v.getX(), v.getY(), v.getZ(), false);
             }
         }
     }

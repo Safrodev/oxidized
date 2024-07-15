@@ -56,7 +56,7 @@ public class CopperGolemEntityModel extends EntityModel<CopperGolemEntity> {
 	}
 
 	@Override
-	public void render(MatrixStack matrixStack, VertexConsumer buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
+	public void render(MatrixStack matrixStack, VertexConsumer buffer, int packedLight, int packedOverlay, int color) {
 		left_leg.render(matrixStack, buffer, packedLight, packedOverlay);
 		right_leg.render(matrixStack, buffer, packedLight, packedOverlay);
 		body.render(matrixStack, buffer, packedLight, packedOverlay);

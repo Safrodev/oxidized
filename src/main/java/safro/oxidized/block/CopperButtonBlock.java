@@ -7,6 +7,6 @@ import net.minecraft.sound.SoundEvents;
 public class CopperButtonBlock extends ButtonBlock {
 
     public CopperButtonBlock(Settings settings) {
-        super(settings, BlockSetType.IRON, 20, false);
+        super(BlockSetType.IRON, 20, settings);
     }
 }

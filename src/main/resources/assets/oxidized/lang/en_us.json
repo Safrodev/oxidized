@@ -8,6 +8,7 @@
   "item.oxidized.copper_nugget": "Copper Nugget",
   "item.oxidized.copper_golem_spawn_egg": "Copper Golem Spawn Egg",
   "item.oxidized.copper_barometer": "Copper Barometer",
+  "item.oxidized.rose_gold_upgrade_template": "Rose Gold Upgrade Template",
 
   "block.oxidized.vertical_cut_copper": "Vertical Cut Copper",
   "block.oxidized.vertical_exposed_cut_copper": "Vertical Exposed Cut Copper",
@@ -41,5 +42,7 @@
   "gui.recipebook.toggleRecipes.kiln": "Showing Kiln Recipes",
   "itemGroup.oxidized.oxidized": "Oxidized",
   "container.oxidized.copper_kiln": "Copper Kiln",
-  "category.oxidized.kiln_smelting": "Copper Kiln Smelting"
+  "category.oxidized.kiln_smelting": "Copper Kiln Smelting",
+
+  "tag.item.c.copper_nuggets": "Copper Nuggets"
 }

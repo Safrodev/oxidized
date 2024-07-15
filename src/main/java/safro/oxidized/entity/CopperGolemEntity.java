@@ -1,9 +1,9 @@
 package safro.oxidized.entity;
 
 import net.minecraft.block.Oxidizable;
-import net.minecraft.client.util.ParticleUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LightningEntity;
 import net.minecraft.entity.ai.goal.LookAroundGoal;
 import net.minecraft.entity.ai.goal.LookAtEntityGoal;
@@ -20,6 +20,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.particle.ParticleUtil;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
@@ -40,6 +41,7 @@ public class CopperGolemEntity extends GolemEntity {
         super(entityType, world);
     }
 
+    @Override
     protected void initGoals() {
         this.goalSelector.add(1, new MoveToLightningRodGoal(this, 0.6D));
         this.goalSelector.add(2, new UseButtonGoal(this, 0.8D));
@@ -57,7 +59,7 @@ public class CopperGolemEntity extends GolemEntity {
     }
 
     public boolean isPressingButtons() {
-        return (Boolean)this.dataTracker.get(IS_PRESSING_BUTTONS);
+        return this.dataTracker.get(IS_PRESSING_BUTTONS);
     }
 
     public Oxidizable.OxidationLevel getOxidizationLevel() {
@@ -68,6 +70,7 @@ public class CopperGolemEntity extends GolemEntity {
         return oxidizationLevel.equals(Oxidizable.OxidationLevel.OXIDIZED);
     }
 
+    @Override
     public void tick() {
         super.tick();
         this.oxidizationTick();
@@ -89,11 +92,13 @@ public class CopperGolemEntity extends GolemEntity {
         }
     }
 
-    protected void initDataTracker() {
-        super.initDataTracker();
-        this.dataTracker.startTracking(IS_PRESSING_BUTTONS, false);
+    @Override
+    protected void initDataTracker(DataTracker.Builder builder) {
+        super.initDataTracker(builder);
+        builder.add(IS_PRESSING_BUTTONS, false);
     }
 
+    @Override
     protected ActionResult interactMob(PlayerEntity player, Hand hand) {
         World world = player.getWorld();
         ItemStack stack = player.getStackInHand(hand);
@@ -101,9 +106,7 @@ public class CopperGolemEntity extends GolemEntity {
             this.degradeLevel();
             world.playSound(player, player.getBlockPos(), SoundEvents.ITEM_AXE_SCRAPE, SoundCategory.BLOCKS, 1.0F, 1.0F);
             world.syncWorldEvent(player, 3005, player.getBlockPos(), 0);
-            stack.damage(1, player, (p) -> {
-                p.sendToolBreakStatus(hand);
-            });
+            stack.damage(1, player, hand == Hand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
             return ActionResult.SUCCESS;
         }
         return ActionResult.PASS;
@@ -119,6 +122,7 @@ public class CopperGolemEntity extends GolemEntity {
         }
     }
 
+    @Override
     public void onStruckByLightning(ServerWorld world, LightningEntity lightning) {
         super.onStruckByLightning(world, lightning);
         this.tickOxidization = 0;
@@ -126,6 +130,7 @@ public class CopperGolemEntity extends GolemEntity {
         ParticleUtil.spawnParticle(this.getMovementDirection().getAxis(), world, this.getBlockPos(), 0.125D, ParticleTypes.ELECTRIC_SPARK, UniformIntProvider.create(1, 2));
     }
 
+    @Override
     public boolean damage(DamageSource source, float amount) {
         boolean bl = super.damage(source, amount);
         if (source.getAttacker() instanceof LightningEntity) {
@@ -134,20 +139,24 @@ public class CopperGolemEntity extends GolemEntity {
             return bl;
     }
 
+    @Override
     protected void pushAway(Entity entity) {
         if (entity instanceof PlayerEntity) {
             super.pushAway(entity);
         }
     }
 
+    @Override
     protected int getNextAirUnderwater(int air) {
         return air;
     }
 
+    @Override
     protected SoundEvent getHurtSound(DamageSource source) {
         return SoundEvents.ENTITY_IRON_GOLEM_HURT;
     }
 
+    @Override
     protected SoundEvent getDeathSound() {
         return SoundEvents.ENTITY_IRON_GOLEM_DEATH;
     }

@@ -1,5 +1,7 @@
 package safro.oxidized.item;
 
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.NbtComponent;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.ItemEntity;
@@ -29,7 +31,7 @@ public class CopperPulsarItem extends Item {
 
     @Override
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
-        if(!world.isClient && isActive(stack)) {
+        if(!world.isClient() && isActive(stack)) {
             ServerPlayerEntity player = (ServerPlayerEntity) entity;
             Box box = player.getBoundingBox().expand(Oxidized.CONFIG.pulsar_reach);
 
@@ -49,77 +51,29 @@ public class CopperPulsarItem extends Item {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
         ItemStack pulsar = player.getStackInHand(hand);
 
-        if (!world.isClient && !player.isSneaking()) {
-            toggleMode(pulsar);
-            player.sendMessage(Text.of("§6Pulsar is now: " + getMagnetMode(pulsar)), false);
-
+        if (!world.isClient() && !player.isSneaking()) {
+            this.toggle(pulsar);
+            String status = this.isActive(pulsar) ? "Active" : "Inactive";
+            player.sendMessage(Text.of("§6Pulsar is now: " + status), false);
         }
-        return new TypedActionResult<>(ActionResult.SUCCESS, pulsar);
+        return TypedActionResult.success(pulsar, world.isClient());
     }
 
-    public boolean isActive(ItemStack pulsar)
-    {
-        return getMagnetMode(pulsar).getBoolean();
-    }
-
-    private void setMagnetMode(ItemStack pulsar, MagnetMode mode) {
-        checkTag(pulsar);
-        pulsar.getNbt().putBoolean(POWERED, mode.getBoolean());
-    }
-
-    private MagnetMode getMagnetMode(ItemStack pulsar) {
-        if (!pulsar.isEmpty())
-        {
-            checkTag(pulsar);
-
-            return pulsar.getNbt().getBoolean(POWERED) ? MagnetMode.ACTIVE : MagnetMode.INACTIVE;
-        }
-        return MagnetMode.INACTIVE;
-    }
-
-    public void toggleMode(ItemStack magnet) {
-        MagnetMode currentMode = getMagnetMode(magnet);
-
-        if (currentMode.getBoolean())
-        {
-            setMagnetMode(magnet, MagnetMode.INACTIVE);
-
-            return;
-        }
-
-        setMagnetMode(magnet, MagnetMode.ACTIVE);
-    }
-
-    private void checkTag(ItemStack pulsar) {
-        if (!pulsar.isEmpty())
-        {
-            if (!pulsar.hasNbt())
-            {
-                pulsar.setNbt(new NbtCompound());
-            }
-            NbtCompound nbt = pulsar.getNbt();
-
-            if (!nbt.contains(POWERED))
-            {
-                nbt.putBoolean(POWERED, false);
+    public boolean isActive(ItemStack stack) {
+        NbtComponent data = stack.get(DataComponentTypes.CUSTOM_DATA);
+        if (data != null) {
+            NbtCompound tag = data.copyNbt();
+            if (tag.contains("Powered")) {
+                return tag.getBoolean("Powered");
             }
         }
+        return true;
     }
 
-    public enum MagnetMode {
-        ACTIVE(true), INACTIVE(false);
-
-        final boolean state;
-
-        MagnetMode(boolean state)
-        {
-            this.state = state;
-        }
-
-        public boolean getBoolean()
-        {
-            return state;
-        }
+    public void toggle(ItemStack stack) {
+        boolean active = isActive(stack);
+        NbtCompound tag = new NbtCompound();
+        tag.putBoolean("Powered", !active);
+        NbtComponent.set(DataComponentTypes.CUSTOM_DATA, stack, tag);
     }
-
 }

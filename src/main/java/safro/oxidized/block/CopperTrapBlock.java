@@ -33,22 +33,21 @@ public class CopperTrapBlock extends Block {
         this.setDefaultState(this.stateManager.getDefaultState().with(CLOSED, false));
     }
 
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (player.getStackInHand(hand).isEmpty()) {
-            if (!world.isClient) {
-                if (state.get(CLOSED)) {
-                    world.setBlockState(pos, state.with(CLOSED, false), 3);
-                } else {
-                    world.setBlockState(pos, state.with(CLOSED, true), 3);
-                }
+    @Override
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+        if (!world.isClient) {
+            if (state.get(CLOSED)) {
+                world.setBlockState(pos, state.with(CLOSED, false), 3);
+            } else {
+                world.setBlockState(pos, state.with(CLOSED, true), 3);
             }
-            world.playSound(null, pos, SoundEvents.BLOCK_COPPER_HIT, SoundCategory.BLOCKS, 1.0F, 1.0F);
-            world.emitGameEvent(player, GameEvent.BLOCK_CHANGE, pos);
-            return ActionResult.SUCCESS;
         }
-        return ActionResult.PASS;
+        world.playSound(null, pos, SoundEvents.BLOCK_COPPER_HIT, SoundCategory.BLOCKS, 1.0F, 1.0F);
+        world.emitGameEvent(player, GameEvent.BLOCK_CHANGE, pos);
+        return ActionResult.SUCCESS;
     }
 
+    @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         if (entity instanceof LivingEntity && !entity.canAvoidTraps()) {
             if (!state.get(CLOSED)) {
@@ -64,11 +63,13 @@ public class CopperTrapBlock extends Block {
         }
     }
 
+    @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(CLOSED);
         super.appendProperties(builder);
     }
 
+    @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return SHAPE;
     }
@@ -79,6 +80,7 @@ public class CopperTrapBlock extends Block {
         world.updateNeighborsAlways(pos, this);
     }
 
+    @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         if (state.get(CLOSED)) {
             world.setBlockState(pos, state.with(CLOSED, false));
@@ -86,10 +88,12 @@ public class CopperTrapBlock extends Block {
         }
     }
 
+    @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         return this.getDefaultState().with(CLOSED, ctx.getWorld().isReceivingRedstonePower(ctx.getBlockPos()));
     }
 
+    @Override
     public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
         if (!world.isClient) {
             world.setBlockState(pos, state.with(CLOSED, world.isReceivingRedstonePower(pos)));

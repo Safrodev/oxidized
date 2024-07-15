@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#G#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "tag": "c:ingots/copper"
+    },
+    "G": {
+      "item": "minecraft:string"
+    }
+  },
+  "result": {
+    "id": "oxidized:copper_pan",
+    "count": 1
+  }
+}
