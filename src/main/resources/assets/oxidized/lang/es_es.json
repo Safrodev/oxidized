@@ -1,0 +1,48 @@
+{
+    "item.oxidized.copper_pulsar": "Copper Pulsar",
+    "item.oxidized.rose_gold_axe": "Hacha de Oro Rosa",
+    "item.oxidized.rose_gold_pickaxe": "Pico de Oro Rosa",
+    "item.oxidized.rose_gold_hoe": "Azada de Oro Rosa",
+    "item.oxidized.rose_gold_shovel": "Pala de Oro Rosa",
+    "item.oxidized.rose_gold_sword": "Espada de Oro Rosa",
+    "item.oxidized.copper_nugget": "Pepita de Cobre",
+    "item.oxidized.copper_golem_spawn_egg": "Generar Gólem de Cobre",
+    "item.oxidized.copper_barometer": "Barómetro de Cobre",
+    "item.oxidized.rose_gold_upgrade_template": "Molde de Mejora de Oro Rosa",
+
+    "block.oxidized.vertical_cut_copper": "Cobre Cortado Verticalmente",
+    "block.oxidized.vertical_exposed_cut_copper": "Cobre Cortado Verticalmente Expuesto",
+    "block.oxidized.vertical_weathered_cut_copper": "Cobre Cortado Verticalmente Degradado",
+    "block.oxidized.vertical_oxidized_cut_copper": "Cobre Cortado Verticalmente Oxidado",
+    "block.oxidized.waxed_vertical_cut_copper": "Cobre Cortado Verticalmente Encerado",
+    "block.oxidized.waxed_vertical_exposed_cut_copper": "Cobre Cortado Verticalmente Expuesto Encerado",
+    "block.oxidized.waxed_vertical_weathered_cut_copper": "Cobre Cortado Verticalmente Degradado Encerado",
+    "block.oxidized.waxed_vertical_oxidized_cut_copper": "Cobre Cortado Verticalmente Oxidado Encerado",
+    "block.oxidized.copper_rail": "Raíl de Cobre",
+    "block.oxidized.copper_kiln": "Horno de Cobre",
+    "block.oxidized.copper_lantern": "Farol de Cobre",
+    "block.oxidized.copper_pan": "Sartén de Cobre",
+    "block.oxidized.copper_button": "Botón de Cobre",
+    "block.oxidized.copper_trap": "Trampa de Cobre",
+  
+    "entity.oxidized.copper_golem": "Gólem de Cobre",
+  
+    "death.attack.trap": "%s fue atrapado",
+  
+    "text.oxidized.rain": "La lluvia terminará en %s segundos",
+    "text.oxidized.thunderstorm": "La tormenta terminará en %s segundos",
+    "text.oxidized.snow": "La nevada terminará en %s segundos",
+    "text.oxidized.clearweather": "Empezará a llover en %s segundos",
+    "text.oxidized.rose_gold_template": "Mejora de Oro Rosa",
+    "text.oxidized.rose_gold_template_applies": "Equipamiento Dorado",
+    "text.oxidized.rose_gold_template_ingredient": "Lingote de Cobre",
+    "text.oxidized.rose_gold_template.base_desc": "Añade una herramienta dorada",
+    "text.oxidized.rose_gold_template.ing_desc": "Añade un lingote de cobre",
+  
+    "gui.recipebook.toggleRecipes.kiln": "Mostrando recetas de horno",
+    "itemGroup.oxidized.oxidized": "Oxidado",
+    "container.oxidized.copper_kiln": "Horno de Cobre",
+    "category.oxidized.kiln_smelting": "Fundición de Horno de Cobre",
+  
+    "tag.item.c.copper_nuggets": "Pepitas de Cobre"
+  }
