@@ -27,14 +27,19 @@
   "entity.oxidized.copper_golem": "Медный голем",
 
   "death.attack.trap": "%s угодил в капкан",
-  
-  "text.oxidized.rain": "Через %s секунд кончится дождь",
-  "text.oxidized.thunderstorm": "Через %s секунд кончится гроза",
-  "text.oxidized.snow": "Через %s секунд кончится снегопад",
-  "text.oxidized.clearweather": "Через %s секунд выпадут осадки",
+
+  "text.oxidized.rain": "Дождь закончится через %s секунд",
+  "text.oxidized.thunderstorm": "Гроза закончится через %s секунд",
+  "text.oxidized.snow": "Снег закончится %s секунд",
+  "text.oxidized.clearweather": "Осадки ожидаются через %s секунд",
+  "text.oxidized.rose_gold_template": "Улучшение в розовое золото",
+  "text.oxidized.rose_gold_template_applies": "Золотому снаряжению",
+  "text.oxidized.rose_gold_template_ingredient": "Медный слиток",
+  "text.oxidized.rose_gold_template.base_desc": "Поместите золотой доспех, инструмент или оружие",
+  "text.oxidized.rose_gold_template.ing_desc": "Поместите медный слиток",
 
   "gui.recipebook.toggleRecipes.kiln": "Показ рецептов для сушильни",
-  "itemGroup.oxidized.oxidized": "Oxidized",
+  "itemGroup.oxidized.item_group": "Окисленное",
   "container.oxidized.copper_kiln": "Медная сушильня",
   "category.oxidized.kiln_smelting": "Плавка в медной сушильне"
 }
